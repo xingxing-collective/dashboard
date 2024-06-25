@@ -29,7 +29,9 @@ export default defineNuxtConfig({
   },
   modules: [
     '@vueuse/nuxt',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    '@vueuse/nuxt',
+    '@nuxt/eslint'
   ],
   tailwindcss: {
     configPath: './tailwind.config.ts'
