@@ -15,11 +15,12 @@ export function useChartRender(hook?: (chart: ReturnType<typeof useChart>) => vo
   const hasRendered = ref(false)
   const colorMode = useColorMode()
   const { createObserver } = useObserver()
-
+  let g2: ReturnType<typeof useChart>
   // bug G2 Instance use ref 
   const renderChart = async () => {
     if (hasRendered.value) return
-    const g2: ReturnType<typeof useChart> = useChart({
+    if (g2) g2.destroy()
+    g2 = useChart({
       container: container.value!,
       autoFit: true
     })
