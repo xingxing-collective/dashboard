@@ -3,6 +3,7 @@
     "nuxt",
     "tailwindcss",
     "antv",
-    "heroicons"
+    "heroicons",
+    "GAODE"
   ]
 }

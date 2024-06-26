@@ -25,6 +25,24 @@ const links = ref([{
     icon: 'i-heroicons-table-cells',
     to: '/antv/s2',
     exact: true
+  }, {
+    label: 'L7',
+    icon: 'i-heroicons-map-16-solid',
+    children: [{
+      label: 'GaodeMap',
+      to: '/antv/l7/gaodemap',
+      tooltip: {
+        text: '高德'
+      },
+      exact: true
+    }, {
+      label: 'BaiduMap',
+      to: '/antv/l7/baidumap',
+      tooltip: {
+        text: '百度'
+      },
+      exact: true
+    }]
   }],
   tooltip: {
     text: 'AntV'
@@ -34,27 +52,12 @@ const links = ref([{
 
 <template>
   <DashboardLayout>
-    <DashboardPanel
-      :width="250"
-      :resizable="{ min: 200, max: 300 }"
-      collapsible
-    >
-      <DashboardNavbar
-        class="!border-transparent"
-        :ui="{ left: 'flex-1' }"
-      >
+    <DashboardPanel :width="250" :resizable="{ min: 200, max: 300 }" collapsible>
+      <DashboardNavbar class="!border-transparent" :ui="{ left: 'flex-1' }">
         <template #left>
           <div class="w-full">
-            <UButton
-              color="gray"
-              to="/"
-              variant="ghost"
-              class="w-full"
-            >
-              <UAvatar
-                src="https://avatars.githubusercontent.com/u/23360933?s=200&v=4"
-                size="2xs"
-              />
+            <UButton color="gray" to="/" variant="ghost" class="w-full">
+              <UAvatar src="https://avatars.githubusercontent.com/u/23360933?s=200&v=4" size="2xs" />
               <span class="truncate text-gray-900 dark:text-white font-semibold">Dashboard</span>
             </UButton>
           </div>
@@ -77,12 +80,8 @@ const links = ref([{
                 <ColorPicker />
                 <ColorModeButton />
                 <UButton
-                  to="https://github.com/xingxingmofashu/XBoot"
-                  target="_blank"
-                  icon="i-simple-icons-github"
-                  aria-label="GitHub"
-                  v-bind="($ui.button.secondary as any)"
-                />
+to="https://github.com/xcodenix/dashboard" target="_blank" icon="i-simple-icons-github"
+                  aria-label="GitHub" v-bind="($ui.button.secondary as any)" />
               </template>
             </DashboardHeader>
           </template>
@@ -93,4 +92,4 @@ const links = ref([{
       </DashboardPanel>
     </DashboardPage>
   </DashboardLayout>
-</template>../../../components/color-picker/index.vue
+</template>

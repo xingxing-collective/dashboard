@@ -21,6 +21,18 @@ export default defineNuxtConfig({
     global: true,
     icons: ['heroicons', 'simple-icons']
   },
+  runtimeConfig: {
+    public: {
+      map: {
+        amap: {
+          token: import.meta.env.GAODE_MAP_TOKEN
+        },
+        bmap:{
+          token: import.meta.env.BAIDU_MAP_TOKEN
+        }
+      }
+    }
+  },
   components: {
     dirs: [{
       path: '~/components/ui',
