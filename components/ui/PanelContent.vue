@@ -11,7 +11,7 @@
 import type { PropType } from 'vue'
 
 const config = {
-  wrapper: 'p-4 flex-1 flex flex-col overflow-y-auto'
+  wrapper: 'flex-1 flex flex-col overflow-y-auto'
 }
 
 defineOptions({

@@ -16,18 +16,22 @@
   "dependencies": {
     "@antv/g2": "^5.1.21",
     "@antv/g2-extension-plot": "^0.2.0",
+    "@antv/g6": "^5.0.3",
+    "@antv/l7": "^2.22.0",
+    "@antv/l7-maps": "^2.22.0",
+    "@antv/l7plot": "^0.5.10",
     "@antv/s2": "^1.55.6",
     "@ckpack/vue-color": "^1.5.0",
     "@iconify-json/heroicons": "^1.1.20",
     "@iconify-json/simple-icons": "^1.1.100",
-    "vue3-smooth-dnd": "^0.0.6",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue3-smooth-dnd": "^0.0.6"
   },
   "devDependencies": {
     "@ctrl/tinycolor": "^3.6.0",
-    "@nuxt/ui": "^2.15.2",
     "@nuxt/eslint": "^0.3.9",
+    "@nuxt/ui": "^2.15.2",
     "@vueuse/nuxt": "^10.9.0",
     "eslint": "^9.1.1",
     "husky": "^9.0.11",
