@@ -18,30 +18,38 @@ const links = ref([{
   children: [{
     label: 'G2',
     icon: 'i-heroicons-chart-bar',
-    to: '/antv/g2',
-    exact: true
+    to: '/antv/g2'
   }, {
     label: 'S2',
     icon: 'i-heroicons-table-cells',
-    to: '/antv/s2',
-    exact: true
+    to: '/antv/s2'
   }, {
     label: 'L7',
     icon: 'i-heroicons-map-16-solid',
+    defaultOpen: route.path.startsWith('/antv/l7'),
     children: [{
       label: 'GaodeMap',
       to: '/antv/l7/gaodemap',
       tooltip: {
         text: '高德'
-      },
-      exact: true
+      }
     }, {
       label: 'BaiduMap',
       to: '/antv/l7/baidumap',
       tooltip: {
         text: '百度'
+      }
+    }]
+  },{
+    label:'X6',
+    icon:'i-hugeicons-flow-connection',
+    defaultOpen: route.path.startsWith('/antv/x6'),
+    children:[{
+      label:'Flowchart',
+      to:'/antv/x6/flowchart',
+      tooltip:{
+        text:'流程图'
       },
-      exact: true
     }]
   }],
   tooltip: {
