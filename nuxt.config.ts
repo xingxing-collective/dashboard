@@ -12,14 +12,9 @@ export default defineNuxtConfig({
       ]
     }
   },
-  router: {
-    options: {
-      hashMode: true
-    }
-  },
+  ssr: false,
   ui: {
-    global: true,
-    icons: ['heroicons', 'simple-icons']
+    icons: 'all'
   },
   runtimeConfig: {
     public: {
@@ -27,7 +22,7 @@ export default defineNuxtConfig({
         amap: {
           token: import.meta.env.GAODE_MAP_TOKEN
         },
-        bmap:{
+        bmap: {
           token: import.meta.env.BAIDU_MAP_TOKEN
         }
       }
@@ -58,7 +53,7 @@ export default defineNuxtConfig({
       cssMinify: 'esbuild'
     },
     optimizeDeps: {
-      include: ['vue3-smooth-dnd', '@antv/g-lite']
+      include: ['vue3-smooth-dnd']
     }
   }
 })

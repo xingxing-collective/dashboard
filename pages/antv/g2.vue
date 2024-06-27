@@ -24,4 +24,8 @@ const components = computed(() => {
     return parseInt(a[0].match(/\/(\d+)\./)![1], 10) - parseInt(b[0].match(/\/(\d+)\./)![1], 10)
   })
 })
+useSeoMeta({
+  title: 'G2 | AntV | Dashboard',
+  description:'G2 | AntV | Dashboard'
+})
 </script>

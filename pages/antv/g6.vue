@@ -12,4 +12,8 @@ const components = import.meta.glob<Component>([
   eager: true,
   import: 'default'
 })
+useSeoMeta({
+  title: 'G6 | AntV | Dashboard',
+  description:'G6 | AntV | Dashboard'
+})
 </script>
