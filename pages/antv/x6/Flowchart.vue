@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-1 w-full h-full">
     <div ref="container" class=" w-full h-full flex border border-gray-200">
-      <div ref="stencilContainer" class=" w-48 h-full relative border-r border-gray-200" />
+      <div ref="stencilContainer" class="w-48 h-full relative border-r border-gray-200" />
       <div ref="graphContainer" class=" w-[calc(100%-12rem)] h-full" />
     </div>
   </div>
@@ -15,6 +15,7 @@ import { Snapline } from '@antv/x6-plugin-snapline'
 import { Keyboard } from '@antv/x6-plugin-keyboard'
 import { Clipboard } from '@antv/x6-plugin-clipboard'
 import { History } from '@antv/x6-plugin-history'
+import { Export } from '@antv/x6-plugin-export'
 
 const container = ref<HTMLElement>()
 const stencilContainer = ref<HTMLDivElement>()
@@ -98,6 +99,7 @@ const ports = reactive({
     },
   ],
 })
+
 const graph = ref<Graph>()
 const stencil = ref<Stencil>()
 
@@ -105,7 +107,7 @@ const stencil = ref<Stencil>()
  * 初始化画布
  */
 const createGraph = () => {
-  graph.value = new Graph({
+  return new Graph({
     container: graphContainer.value,
     grid: true,
     mousewheel: {
@@ -168,7 +170,7 @@ const createGraph = () => {
  * @param graph 画布
  */
 const createStencil = (graph: Graph) => {
-  stencil.value = new Stencil({
+  return new Stencil({
     title: '流程图',
     target: graph,
     stencilGraphWidth: 200,
@@ -192,6 +194,7 @@ const createStencil = (graph: Graph) => {
       columns: 2,
       columnWidth: 80,
       rowHeight: 55,
+      theme: 'dark'
     },
   })
 }
@@ -214,6 +217,7 @@ const usePlugins = (graph: Graph) => {
     .use(new Keyboard())
     .use(new Clipboard())
     .use(new History())
+    .use(new Export())
 }
 
 /**
@@ -241,6 +245,12 @@ const addEventListener = (graph: Graph) => {
       graph.cleanSelection()
       graph.select(cells)
     }
+    return false
+  })
+
+  //save 
+  graph.bindKey(['meta+s', 'ctrl+s'], () => {
+    graph.exportSVG()
     return false
   })
 
@@ -294,6 +304,7 @@ const addEventListener = (graph: Graph) => {
       ports[i].style.visibility = show ? 'visible' : 'hidden'
     }
   }
+
   graph.on('node:mouseenter', () => {
     const container = graphContainer.value!
     const ports = container.querySelectorAll(
@@ -529,9 +540,9 @@ const createNode = (graph: Graph, stencil: Stencil) => {
 
 
 onMounted(() => {
-  createGraph()
+  graph.value = createGraph()
   usePlugins(graph.value!)
-  createStencil(graph.value!)
+  stencil.value = createStencil(graph.value!)
   stencilContainer.value!.appendChild(stencil.value!.container)
   addEventListener(graph.value!)
   createNode(graph.value!, stencil.value!)
@@ -542,17 +553,22 @@ useSeoMeta({
   description: 'X6 | AntV | Dashboard'
 })
 </script>
-<style scoped>
+<style>
 .x6-widget-stencil {
-  background-color: #fff;
+  background-color: inherit;
 }
 
 .x6-widget-stencil-title {
-  background-color: #fff;
+  background-color: inherit;
+}
+
+/* dark background */
+.dark .x6-widget-stencil-title::before {
+  
 }
 
 .x6-widget-stencil-group-title {
-  background-color: #fff !important;
+  background-color: inherit !important;
 }
 
 .x6-widget-transform {

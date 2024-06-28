@@ -19,11 +19,20 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       map: {
-        amap: {
+        gaode: {
           token: import.meta.env.GAODE_MAP_TOKEN
         },
-        bmap: {
+        baidu: {
           token: import.meta.env.BAIDU_MAP_TOKEN
+        },
+        tencent: {
+          token: import.meta.env.TENCENT_MAP_TOKEN
+        },
+        mapLibre: {
+          token: import.meta.env.MAPLIBRE_MAP_TOKEN
+        },
+        mapbox: {
+          token: import.meta.env.MAPBOX_MAP_TOKEN
         }
       }
     }
