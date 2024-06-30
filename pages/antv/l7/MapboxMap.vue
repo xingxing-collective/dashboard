@@ -6,7 +6,7 @@
   </KeepAlive>
 </template>
 <script setup lang="ts">
-const { container } = useMap(MapType.BAIDU)
+const { container } = useMap(MapType.MAPBOX)
 
 useSeoMeta({
   title: 'L7 | AntV | Dashboard',

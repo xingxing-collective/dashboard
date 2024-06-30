@@ -3,10 +3,7 @@
     <div class="text-center text-sm font-semibold">
       旭日图
     </div>
-    <div
-      ref="container"
-      class="h-full"
-    />
+    <div ref="container" class="h-full" />
   </div>
 </template>
 
@@ -14,6 +11,7 @@
 import { plotlib } from '@antv/g2-extension-plot'
 import { Runtime, corelib, extend } from '@antv/g2'
 
+const { createObserver } = useObserver()
 const Chart = extend(Runtime, { ...corelib(), ...plotlib() })
 
 const container = ref<HTMLElement>()
@@ -33,6 +31,10 @@ const renderChart = () => {
   chart.render()
 }
 onMounted(() => {
-  renderChart()
+  createObserver(container.value!, () => {
+    renderChart()
+  }, {
+    threshold: 0.75
+  })
 })
 </script>

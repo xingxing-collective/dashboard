@@ -39,6 +39,24 @@ const links = ref([{
       tooltip: {
         text: '百度'
       }
+    },{
+      label:'TencentMap',
+      to:'/antv/l7/tencentmap',
+      tooltip:{
+        text:'腾讯'
+      }
+    },{
+      label:'MapboxMap',
+      to:'/antv/l7/mapboxmap',
+      tooltip:{
+        text:'Mapbox'
+      }
+    },{
+      label:'MapLibreMap',
+      to:'/antv/l7/maplibremap',
+      tooltip:{
+        text:'MapLibre'
+      }
     }]
   },{
     label:'X6',
