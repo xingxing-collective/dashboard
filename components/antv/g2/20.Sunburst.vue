@@ -13,13 +13,20 @@ import { Runtime, corelib, extend } from '@antv/g2'
 
 const { createObserver } = useObserver()
 const Chart = extend(Runtime, { ...corelib(), ...plotlib() })
-
+const hasRendered = ref(false)
 const container = ref<HTMLElement>()
-const renderChart = () => {
-  const chart = new Chart({
+
+const useChart = () => {
+  return new Chart({
     container: container.value,
     autoFit: true
   })
+}
+let chart: ReturnType<typeof useChart>
+const renderChart = () => {
+  if (hasRendered.value) return
+  if (chart) chart.destroy()
+  chart = useChart()
   chart
     .sunburst()
     .data({
@@ -29,6 +36,7 @@ const renderChart = () => {
     .animate('enter', { type: 'waveIn' })
     .coordinate({ type: 'polar', innerRadius: 0 })
   chart.render()
+  hasRendered.value = true
 }
 onMounted(() => {
   createObserver(container.value!, () => {
