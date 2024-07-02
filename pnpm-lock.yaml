@@ -8,6 +8,19 @@ importers:
 
   .:
     dependencies:
+      '@iconify/json':
+        specifier: ^2.2.222
+        version: 2.2.222
+      vue:
+        specifier: ^3.4.21
+        version: 3.4.30(typescript@5.5.2)
+      vue-router:
+        specifier: ^4.3.0
+        version: 4.4.0(vue@3.4.30(typescript@5.5.2))
+      vue3-smooth-dnd:
+        specifier: ^0.0.6
+        version: 0.0.6(vue@3.4.30(typescript@5.5.2))
+    devDependencies:
       '@antv/g2':
         specifier: ^5.1.21
         version: 5.1.23
@@ -59,19 +72,6 @@ importers:
       '@ckpack/vue-color':
         specifier: ^1.5.0
         version: 1.5.0(vue@3.4.30(typescript@5.5.2))
-      '@iconify/json':
-        specifier: ^2.2.222
-        version: 2.2.222
-      vue:
-        specifier: ^3.4.21
-        version: 3.4.30(typescript@5.5.2)
-      vue-router:
-        specifier: ^4.3.0
-        version: 4.4.0(vue@3.4.30(typescript@5.5.2))
-      vue3-smooth-dnd:
-        specifier: ^0.0.6
-        version: 0.0.6(vue@3.4.30(typescript@5.5.2))
-    devDependencies:
       '@ctrl/tinycolor':
         specifier: ^3.6.0
         version: 3.6.1
