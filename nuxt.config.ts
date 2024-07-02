@@ -4,6 +4,11 @@ export default defineNuxtConfig({
     head: {
       title: 'AntV - Dashboard',
       titleTemplate: '%s',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: 'Dashboard built with AntV' }
+      ],
       htmlAttrs: {
         lang: 'en-US'
       },
@@ -43,12 +48,7 @@ export default defineNuxtConfig({
       prefix: 'Dashboard'
     }, '~/components']
   },
-  modules: [
-    '@vueuse/nuxt',
-    '@nuxt/ui',
-    '@vueuse/nuxt',
-    '@nuxt/eslint'
-  ],
+  modules: ['@vueuse/nuxt', '@nuxt/ui', '@vueuse/nuxt', '@nuxt/eslint'],
   tailwindcss: {
     configPath: './tailwind.config.ts'
   },
