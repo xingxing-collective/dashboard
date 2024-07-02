@@ -2,7 +2,7 @@ import { createSharedComposable } from '@vueuse/core'
 
 const _useUIState = () => {
   const route = useRoute()
-
+  const isHeaderDialogOpen = ref(false)
   const isDashboardSidebarSlidoverOpen = ref(false)
   const isDashboardSearchModalOpen = ref(false)
 
@@ -25,6 +25,7 @@ const _useUIState = () => {
   })
 
   return {
+    isHeaderDialogOpen,
     isDashboardSidebarSlidoverOpen,
     isDashboardSearchModalOpen,
     toggleDashboardSearch
