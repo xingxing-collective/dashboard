@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const route = useRoute()
-
 const links = ref([{
   id: 'home',
   label: 'Home',
@@ -34,39 +33,27 @@ const links = ref([{
         text: '高德'
       }
     }, {
-      label: 'BaiduMap',
-      to: '/antv/l7/baidumap',
+      label: 'TencentMap',
+      to: '/antv/l7/tencentmap',
       tooltip: {
-        text: '百度'
+        text: '腾讯'
       }
-    },{
-      label:'TencentMap',
-      to:'/antv/l7/tencentmap',
-      tooltip:{
-        text:'腾讯'
-      }
-    },{
-      label:'MapboxMap',
-      to:'/antv/l7/mapboxmap',
-      tooltip:{
-        text:'Mapbox'
-      }
-    },{
-      label:'MapLibreMap',
-      to:'/antv/l7/maplibremap',
-      tooltip:{
-        text:'MapLibre'
+    }, {
+      label: 'MapLibreMap',
+      to: '/antv/l7/maplibremap',
+      tooltip: {
+        text: 'MapLibre'
       }
     }]
-  },{
-    label:'X6',
-    icon:'i-hugeicons-flow-connection',
+  }, {
+    label: 'X6',
+    icon: 'i-hugeicons-flow-connection',
     defaultOpen: route.path.startsWith('/antv/x6'),
-    children:[{
-      label:'Flowchart',
-      to:'/antv/x6/flowchart',
-      tooltip:{
-        text:'流程图'
+    children: [{
+      label: 'Flowchart',
+      to: '/antv/x6/flowchart',
+      tooltip: {
+        text: '流程图'
       },
     }]
   }],
@@ -105,8 +92,7 @@ const links = ref([{
               <template #right>
                 <ColorPicker />
                 <ColorModeButton />
-                <UButton
-to="https://github.com/xcodenix/dashboard" target="_blank" icon="i-simple-icons-github"
+                <UButton to="https://github.com/xcodenix/dashboard" target="_blank" icon="i-simple-icons-github"
                   aria-label="GitHub" v-bind="($ui.button.secondary as any)" />
               </template>
             </DashboardHeader>
