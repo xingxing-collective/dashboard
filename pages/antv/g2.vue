@@ -1,15 +1,10 @@
 <template>
-  <div>
-    <div class="grid grid-cols-3">
-      <template
-        v-for="[key, component] in components"
-        :key="key"
-      >
-        <component
-          :is="component"
-          class="col-span-1 py-4 h-96"
-        />
-      </template>
+  <div class="px-4 py-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+      <div v-for="[key, component] in components" :key="key"
+        class="col-span-1 rounded-xl divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 relative group flex flex-col overflow-hidden group">
+        <component :is="component" class="flex-1 px-2 py-2 sm:p-3 min-h-96 max-h-96" />
+      </div>
     </div>
   </div>
 </template>
@@ -26,6 +21,6 @@ const components = computed(() => {
 })
 useSeoMeta({
   title: 'G2 | AntV | Dashboard',
-  description:'G2 | AntV | Dashboard'
+  description: 'G2 | AntV | Dashboard'
 })
 </script>
