@@ -70,7 +70,7 @@ const links = ref([{
         <template #left>
           <div class="w-full">
             <UButton color="gray" to="/" variant="ghost" class="w-full">
-              <UAvatar src="https://avatars.githubusercontent.com/u/23360933?s=200&v=4" size="2xs" />
+              <UIcon name="i-logos-nuxt-icon" class=" w-5 h-5" />
               <span class="truncate text-gray-900 dark:text-white font-semibold">Dashboard</span>
             </UButton>
           </div>
