@@ -38,7 +38,7 @@ export function useChartRender(hook?: (chart: ReturnType<typeof useChart>) => vo
     createObserver(container.value!, async () => {
       await renderChart()
     }, {
-      threshold: 0.75
+      threshold: 0.5
     })
   })
 
