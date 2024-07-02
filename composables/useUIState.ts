@@ -3,24 +3,8 @@ import { createSharedComposable } from '@vueuse/core'
 const _useUIState = () => {
   const route = useRoute()
 
-  const isHeaderDialogOpen = ref(false)
-  const isContentSearchModalOpen = ref(false)
   const isDashboardSidebarSlidoverOpen = ref(false)
   const isDashboardSearchModalOpen = ref(false)
-
-  function toggleContentSearch() {
-    if (isHeaderDialogOpen.value) {
-      isHeaderDialogOpen.value = false
-
-      setTimeout(() => {
-        isContentSearchModalOpen.value = !isContentSearchModalOpen.value
-      }, 0)
-
-      return
-    }
-
-    isContentSearchModalOpen.value = !isContentSearchModalOpen.value
-  }
 
   function toggleDashboardSearch() {
     if (isDashboardSidebarSlidoverOpen.value) {
@@ -41,11 +25,8 @@ const _useUIState = () => {
   })
 
   return {
-    isHeaderDialogOpen,
-    isContentSearchModalOpen,
     isDashboardSidebarSlidoverOpen,
     isDashboardSearchModalOpen,
-    toggleContentSearch,
     toggleDashboardSearch
   }
 }
