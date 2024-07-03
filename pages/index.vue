@@ -42,7 +42,7 @@ const previews = computed(() => {
   }, {
     title: 'AntV L7 MapLibre Map',
     image: {
-      src: `/images/antv/light/l7/map-libre.png`,
+      src: `/images/antv/${colorMode.value}/l7/map-libre.png`,
       alt: 'AntV L7 MapLibre Map'
     },
     url: '/antv/l7/maplibremap'

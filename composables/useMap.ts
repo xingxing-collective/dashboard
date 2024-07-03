@@ -18,8 +18,8 @@ export const useMap = (type: MapType, config: Partial<IMapConfig<{}>> = {},) => 
   // get gaode and tencent and baidu maps tokens
   const { public: { map: { gaode, baidu, tencent, mapLibre, mapbox } } } = useRuntimeConfig()
 
-  const mapInstance = ref<MapInstanceType>()
-  const scene = ref<Scene>()
+  const mapInstance = shallowRef<MapInstanceType>()
+  const scene = shallowRef<Scene>()
 
   // initialize the map themes
   const themesConfig = computed(() => {
@@ -29,8 +29,8 @@ export const useMap = (type: MapType, config: Partial<IMapConfig<{}>> = {},) => 
       .set(MapType.BAIDU, { dark: '344b005fd5b4220a55241c25e7733e81', light: 'c17b1c2b528429a7b04bbc8d3eb8bae9' })
       .set(MapType.MAPBOX, { dark: 'mapbox://styles/mapbox/dark-v11', light: 'mapbox://styles/mapbox/light-v11' })
       .set(MapType.MAPLIBRE, {
-        dark: `https://api.maptiler.com/maps/bright-v2/style.json?key=${mapLibre.token}`,
-        light: `https://api.maptiler.com/maps/bright-v2/style.json?key=${mapLibre.token}`
+        dark: `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${mapLibre.token}`,
+        light: `https://api.maptiler.com/maps/dataviz/style.json?key=${mapLibre.token}`
       })
   })
 
