@@ -18,8 +18,8 @@ export const useMap = (type: MapType, config: Partial<IMapConfig<{}>> = {},) => 
   // get gaode and tencent and baidu maps tokens
   const { public: { map: { gaode, baidu, tencent, mapLibre, mapbox } } } = useRuntimeConfig()
 
-  const mapInstance = ref<MapInstanceType>()
-  const scene = ref<Scene>()
+  const mapInstance = shallowRef<MapInstanceType>()
+  const scene = shallowRef<Scene>()
 
   // initialize the map themes
   const themesConfig = computed(() => {

@@ -15,24 +15,23 @@ export function useChartRender(hook?: (chart: ReturnType<typeof useChart>) => vo
   const hasRendered = ref(false)
   const colorMode = useColorMode()
   const { createObserver } = useObserver()
-  let g2: ReturnType<typeof useChart>
-  // bug G2 Instance use ref 
+  const g2 = shallowRef<ReturnType<typeof useChart>>()
   const renderChart = async () => {
     if (hasRendered.value) return
-    if (g2) g2.destroy()
-    g2 = useChart({
+    if (g2.value) g2.value.destroy()
+    g2.value = useChart({
       container: container.value!,
       autoFit: true
     })
     if (hook)
-      hook(g2)
-    await g2.render()
+      hook(g2.value)
+    await g2.value.render()
     hasRendered.value = true
   }
 
   //TODO: Set chart Theme
   watch(colorMode, () => {
-
+   
   })
   onMounted(() => {
     createObserver(container.value!, async () => {
