@@ -14,7 +14,7 @@ export type MapInstanceType = {
 
 export const useMap = (type: MapType, config: Partial<IMapConfig<{}>> = {},) => {
   const container = ref<HTMLDivElement>()
-
+  const colorMode = useColorMode()
   // get gaode and tencent and baidu maps tokens
   const { public: { map: { gaode, baidu, tencent, mapLibre, mapbox } } } = useRuntimeConfig()
 
@@ -24,38 +24,12 @@ export const useMap = (type: MapType, config: Partial<IMapConfig<{}>> = {},) => 
   // initialize the map themes
   const themesConfig = computed(() => {
     // TODO: tencent map theme only has one
-    return new Map<MapType, Record<'dark' | 'light', MapStyle>>()
-      .set(MapType.GAODE, { dark: 'amap://styles/darkblue', light: 'light' })
-      .set(MapType.BAIDU, { dark: '344b005fd5b4220a55241c25e7733e81', light: 'c17b1c2b528429a7b04bbc8d3eb8bae9' })
-      .set(MapType.MAPBOX, { dark: 'mapbox://styles/mapbox/dark-v11', light: 'mapbox://styles/mapbox/light-v11' })
-      .set(MapType.MAPLIBRE, {
-        dark: `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${mapLibre.token}`,
-        light: `https://api.maptiler.com/maps/dataviz/style.json?key=${mapLibre.token}`
-      })
+    return new Map<MapType, Record<string, MapStyle>>()
+      .set(MapType.GAODE, gaode.themes)
+      .set(MapType.BAIDU, baidu.themes)
+      .set(MapType.MAPBOX, mapbox.themes)
+      .set(MapType.MAPLIBRE, mapLibre.themes).get(type)
   })
-
-  switch (type) {
-    case MapType.GAODE:
-      config.token = gaode.token
-      mapInstance.value = useGaodeMap()
-      break
-    case MapType.BAIDU:
-      config.token = baidu.token
-      mapInstance.value = useBaiduMap()
-      break
-    case MapType.TENCENT:
-      config.token = tencent.token
-      mapInstance.value = useTencentMap()
-      break
-    case MapType.MAPLIBRE:
-      config.token = mapLibre.token
-      mapInstance.value = useMapLibre()
-      break
-    case MapType.MAPBOX:
-      config.token = mapbox.token
-      mapInstance.value = useMapbox()
-      break
-  }
 
   function useGaodeMap() {
     return new GaodeMap(config)
@@ -73,31 +47,51 @@ export const useMap = (type: MapType, config: Partial<IMapConfig<{}>> = {},) => 
     return new Mapbox(config)
   }
 
-  function setTheme(colorMode: 'dark' | 'light') {
+  function setTheme(colorMode: string) {
     if (colorMode === 'light')
-      config.style = themesConfig.value.get(type)?.light
-    else config.style = themesConfig.value.get(type)?.dark
+      config.style = themesConfig.value?.light
+    else config.style = themesConfig.value?.dark
   }
 
   function render() {
-    if (!container.value)
-      return
     if (scene.value)
       scene.value?.destroy()
+
+    switch (type) {
+      case MapType.GAODE:
+        config.token = gaode.token
+        mapInstance.value = useGaodeMap()
+        break
+      case MapType.BAIDU:
+        config.token = baidu.token
+        mapInstance.value = useBaiduMap()
+        break
+      case MapType.TENCENT:
+        config.token = tencent.token
+        mapInstance.value = useTencentMap()
+        break
+      case MapType.MAPLIBRE:
+        config.token = mapLibre.token
+        mapInstance.value = useMapLibre()
+        break
+      case MapType.MAPBOX:
+        config.token = mapbox.token
+        mapInstance.value = useMapbox()
+        break
+    }
     scene.value = new Scene({
       id: container.value!,
       map: mapInstance.value!,
     })
   }
 
-  watch(useColorMode(), (color) => {
-    setTheme(color.value as 'dark' | 'light')
+  watch(colorMode, (color) => {
+    setTheme(color.value)
     render()
-  }, {
-    immediate: true
   })
 
   onMounted(() => {
+    setTheme(colorMode.value)
     render()
   })
 
