@@ -25,19 +25,35 @@ export default defineNuxtConfig({
     public: {
       map: {
         gaode: {
-          token: import.meta.env.GAODE_MAP_TOKEN
+          token: import.meta.env.GAODE_MAP_TOKEN,
+          themes: {
+            dark: 'amap://styles/darkblue',
+            light: 'light'
+          }
         },
         baidu: {
-          token: import.meta.env.BAIDU_MAP_TOKEN
+          token: import.meta.env.BAIDU_MAP_TOKEN,
+          themes: {
+            dark: '344b005fd5b4220a55241c25e7733e81',
+            light: 'c17b1c2b528429a7b04bbc8d3eb8bae9'
+          }
         },
         tencent: {
-          token: import.meta.env.TENCENT_MAP_TOKEN
+          token: import.meta.env.TENCENT_MAP_TOKEN,
         },
         mapLibre: {
-          token: import.meta.env.MAPLIBRE_MAP_TOKEN
+          token: import.meta.env.MAPLIBRE_MAP_TOKEN,
+          themes: {
+            dark: `https://api.maptiler.com/maps/dataviz-dark/style.json?key=${import.meta.env.MAPLIBRE_MAP_TOKEN}`,
+            light: `https://api.maptiler.com/maps/dataviz/style.json?key=${import.meta.env.MAPLIBRE_MAP_TOKEN}`
+          }
         },
         mapbox: {
-          token: import.meta.env.MAPBOX_MAP_TOKEN
+          token: import.meta.env.MAPBOX_MAP_TOKEN,
+          themes: {
+            dark: 'mapbox://styles/mapbox/dark-v11',
+            light: 'mapbox://styles/mapbox/light-v11'
+          }
         }
       }
     }
