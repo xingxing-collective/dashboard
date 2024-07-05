@@ -15,7 +15,7 @@ The Project is built with:
 
 # Preview
   - [Vercel](https://xcodenix-dashboard.vercel.app/)  (VPN is needed in China)
-  - [Netlify](https://xcodenix-dashboard.netlify.app/)
+  - [Netlify](https://xingxing-dashboard.netlify.app/)
 
 # Setup
 
