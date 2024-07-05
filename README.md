@@ -14,7 +14,7 @@ The Project is built with:
 - [AntV](https://antv.antgroup.com/)
 
 # Preview
-  - [Vercel](https://xcodenix-dashboard.vercel.app/)  (VPN is needed in China)
+  - [Vercel](https://xingxing-dashboard.vercel.app/)  (VPN is needed in China)
   - [Netlify](https://xingxing-dashboard.netlify.app/)
 
 # Setup
