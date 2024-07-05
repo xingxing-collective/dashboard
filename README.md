@@ -13,6 +13,10 @@ The Project is built with:
 - [Typescript](https://www.typescriptlang.org/)
 - [AntV](https://antv.antgroup.com/)
 
+# Preview
+  - [Vercel](https://xcodenix-dashboard.vercel.app/)  (VPN is needed in China)
+  - [Netlify](https://xcodenix-dashboard.netlify.app/)
+
 # Setup
 
 1. Take a copy of `.env.example` and re-name to `.env`
