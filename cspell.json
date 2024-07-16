@@ -1,9 +1,3 @@
 {
-  "words": [
-    "nuxt",
-    "tailwindcss",
-    "antv",
-    "heroicons",
-    "GAODE"
-  ]
+  "words": ["nuxt", "tailwindcss", "antv", "heroicons", "GAODE"]
 }

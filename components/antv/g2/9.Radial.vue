@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 const { container } = useChartRender((chart) => {
-  chart.coordinate({ type: 'radial', innerRadius: 0.1, endAngle: Math.PI })
+  chart.coordinate({ type: 'radial', innerRadius: 0.1, endAngle: Math.PI });
 
   chart
     .interval()
@@ -24,23 +24,23 @@ const { container } = useChartRender((chart) => {
       { question: '问题 5', percent: 0.53 },
       { question: '问题 6', percent: 0.84 },
       { question: '问题 7', percent: 1.0 },
-      { question: '问题 8', percent: 1.2 }
+      { question: '问题 8', percent: 1.2 },
     ])
     .encode('x', 'question')
     .encode('y', 'percent')
     .encode('color', 'percent')
     .style('stroke', 'white')
     .scale('color', {
-      range: '#BAE7FF-#1890FF-#0050B3'
+      range: '#BAE7FF-#1890FF-#0050B3',
     })
     .axis('y', { tickFilter: (_d: any, i: any) => i !== 0 })
     .legend({
       color: {
         length: 400,
         position: 'bottom',
-        layout: { justifyContent: 'center' }
-      }
+        layout: { justifyContent: 'center' },
+      },
     })
-    .animate('enter', { type: 'waveIn', duration: 800 })
-})
+    .animate('enter', { type: 'waveIn', duration: 800 });
+});
 </script>

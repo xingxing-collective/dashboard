@@ -41,12 +41,12 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { twMerge } from 'tailwind-merge'
-import { getULinkProps } from '#ui/utils'
-import type { HeaderPopoverLink } from '~/types/ui'
+import { twMerge } from 'tailwind-merge';
+import type { PropType } from 'vue';
+import type { HeaderPopoverLink } from '~/types/ui';
+import { getULinkProps } from '#ui/utils';
 
-const appConfig = useAppConfig()
+const appConfig = useAppConfig();
 
 const config = computed(() => ({
   wrapper: 'p-2 space-y-1',
@@ -54,34 +54,41 @@ const config = computed(() => ({
   active: 'bg-gray-100/50 dark:bg-gray-800/50 text-primary',
   inactive: 'hover:bg-gray-100/50 dark:hover:bg-gray-800/50',
   label: 'font-semibold text-sm/6 inline-block relative',
-  description: 'text-sm leading-snug text-gray-500 dark:text-gray-400 line-clamp-2',
+  description:
+    'text-sm leading-snug text-gray-500 dark:text-gray-400 line-clamp-2',
   icon: {
-    base: 'w-4 h-4 flex-shrink-0 mt-1'
+    base: 'w-4 h-4 flex-shrink-0 mt-1',
   },
   externalIcon: {
     name: appConfig.ui.icons.external,
-    base: 'w-3 h-3 absolute top-0.5 -right-3.5 text-gray-400 dark:text-gray-500'
-  }
-}))
+    base: 'w-3 h-3 absolute top-0.5 -right-3.5 text-gray-400 dark:text-gray-500',
+  },
+}));
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = defineProps({
   links: {
     type: Array as PropType<HeaderPopoverLink[]>,
-    default: () => []
+    default: () => [],
   },
   class: {
     type: [String, Object, Array] as PropType<any>,
-    default: undefined
+    default: undefined,
   },
   ui: {
     type: Object as PropType<Partial<typeof config.value>>,
-    default: () => ({})
-  }
-})
+    default: () => ({}),
+  },
+});
 
-const { ui, attrs } = useUI('header.popover.links', toRef(props, 'ui'), config, toRef(props, 'class'), true)
+const { ui, attrs } = useUI(
+  'header.popover.links',
+  toRef(props, 'ui'),
+  config,
+  toRef(props, 'class'),
+  true
+);
 </script>

@@ -16,25 +16,28 @@ const data = [
   { item: '事例二', count: 21, percent: 0.21 },
   { item: '事例三', count: 17, percent: 0.17 },
   { item: '事例四', count: 13, percent: 0.13 },
-  { item: '事例五', count: 9, percent: 0.09 }
-]
-type Data = typeof data[0]
+  { item: '事例五', count: 9, percent: 0.09 },
+];
+type Data = (typeof data)[0];
 const { container } = useChartRender((chart) => {
-  chart.coordinate({ type: 'theta', outerRadius: 0.8 })
+  chart.coordinate({ type: 'theta', outerRadius: 0.8 });
   chart
     .interval()
     .data(data)
     .transform({ type: 'stackY' })
     .encode('y', 'percent')
     .encode('color', 'item')
-    .legend('color', { position: 'bottom', layout: { justifyContent: 'center' } })
+    .legend('color', {
+      position: 'bottom',
+      layout: { justifyContent: 'center' },
+    })
     .label({
       position: 'outside',
-      text: (data: Data) => `${data.item}: ${data.percent * 100}%`
+      text: (data: Data) => `${data.item}: ${data.percent * 100}%`,
     })
-    .tooltip(data => ({
+    .tooltip((data) => ({
       name: data.item,
-      value: `${data.percent * 100}%`
-    }))
-})
+      value: `${data.percent * 100}%`,
+    }));
+});
 </script>

@@ -18,17 +18,17 @@ const data = [
   { time: '10:25', call: 9, waiting: 9, people: 1 },
   { time: '10:30', call: 5, waiting: 2, people: 3 },
   { time: '10:35', call: 8, waiting: 2, people: 1 },
-  { time: '10:40', call: 13, waiting: 1, people: 2 }
-]
+  { time: '10:40', call: 13, waiting: 1, people: 2 },
+];
 
 const { container } = useChartRender((chart) => {
-  chart.data(data)
+  chart.data(data);
 
   chart
     .interval()
     .encode('x', 'time')
     .encode('y', 'waiting')
-    .axis('y', { title: 'Waiting', titleFill: '#5B8FF9' })
+    .axis('y', { title: 'Waiting', titleFill: '#5B8FF9' });
 
   chart
     .line()
@@ -42,7 +42,7 @@ const { container } = useChartRender((chart) => {
       position: 'right',
       grid: null,
       title: 'People',
-      titleFill: '#fdae6b'
-    })
-})
+      titleFill: '#fdae6b',
+    });
+});
 </script>

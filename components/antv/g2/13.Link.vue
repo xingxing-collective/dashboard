@@ -16,7 +16,8 @@ const { container } = useChartRender((chart) => {
     .link()
     .data({
       type: 'fetch',
-      value: 'https://gw.alipayobjects.com/os/antfincdn/SM13%24lHuYH/metros.json'
+      value:
+        'https://gw.alipayobjects.com/os/antfincdn/SM13%24lHuYH/metros.json',
     })
     .encode('x', ['POP_1980', 'POP_2015'])
     .encode('y', ['R90_10_1980', 'R90_10_2015'])
@@ -26,9 +27,9 @@ const { container } = useChartRender((chart) => {
     .style('arrowSize', 6)
     .axis('x', {
       labelFormatter: '~s',
-      labelTransform: 'rotate(90)'
+      labelTransform: 'rotate(90)',
     })
     .legend(false)
-    .tooltip({ title: { channel: 'color', value: '.1f' } })
-})
+    .tooltip({ title: { channel: 'color', value: '.1f' } });
+});
 </script>

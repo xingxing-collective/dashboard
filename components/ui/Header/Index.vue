@@ -103,16 +103,22 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { Dialog, DialogPanel, TransitionRoot, provideUseId } from '@headlessui/vue'
-import { getSlotChildrenText } from '~/lib/slots'
-import type { HeaderLink } from '~/types'
-import { useId } from '#imports'
+import {
+  Dialog,
+  DialogPanel,
+  TransitionRoot,
+  provideUseId,
+} from '@headlessui/vue';
+import type { PropType } from 'vue';
+import { getSlotChildrenText } from '~/lib/slots';
+import type { HeaderLink } from '~/types';
+import { useId } from '#imports';
 
-const appConfig = useAppConfig()
+const appConfig = useAppConfig();
 
 const config = computed(() => ({
-  wrapper: 'bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50',
+  wrapper:
+    'bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50',
   container: 'flex items-center justify-between gap-3 h-[--header-height]',
   left: 'lg:flex-1 flex items-center gap-1.5',
   center: 'hidden lg:flex',
@@ -121,55 +127,70 @@ const config = computed(() => ({
   panel: {
     wrapper: 'fixed inset-0 z-50 overflow-y-auto bg-background lg:hidden',
     header: 'px-4 sm:px-6',
-    body: 'px-4 sm:px-6 pt-3 pb-6'
+    body: 'px-4 sm:px-6 pt-3 pb-6',
   },
   button: {
     base: 'lg:hidden',
     icon: {
       open: appConfig.ui.icons.menu,
-      close: appConfig.ui.icons.close
-    }
-  }
-}))
+      close: appConfig.ui.icons.close,
+    },
+  },
+}));
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = defineProps({
   to: {
     type: String,
-    default: '/'
+    default: '/',
   },
   title: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   links: {
     type: Array as PropType<HeaderLink[]>,
-    default: () => []
+    default: () => [],
   },
   class: {
     type: [String, Object, Array] as PropType<any>,
-    default: undefined
+    default: undefined,
   },
   ui: {
     type: Object as PropType<Partial<typeof config.value>>,
-    default: () => ({})
+    default: () => ({}),
+  },
+});
+
+const route = useRoute();
+const slots = useSlots();
+const { isHeaderDialogOpen } = useUIState();
+const { ui, attrs } = useUI(
+  'header',
+  toRef(props, 'ui'),
+  config,
+  toRef(props, 'class'),
+  true
+);
+
+const ariaLabel = computed(() =>
+  (
+    props.title ||
+    (slots.logo && getSlotChildrenText(slots.logo())) ||
+    'Logo'
+  ).trim()
+);
+
+watch(
+  () => route.fullPath,
+  () => {
+    isHeaderDialogOpen.value = false;
   }
-})
+);
 
-const route = useRoute()
-const slots = useSlots()
-const { isHeaderDialogOpen } = useUIState()
-const { ui, attrs } = useUI('header', toRef(props, 'ui'), config, toRef(props, 'class'), true)
-
-const ariaLabel = computed(() => (props.title || (slots.logo && getSlotChildrenText(slots.logo())) || 'Logo').trim())
-
-watch(() => route.fullPath, () => {
-  isHeaderDialogOpen.value = false
-})
-
-provideUseId(() => useId())
+provideUseId(() => useId());
 </script>
 ~/packages/dashboard/lib/slots

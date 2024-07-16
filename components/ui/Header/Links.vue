@@ -74,11 +74,11 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { getULinkProps } from '#ui/utils'
-import type { HeaderLink } from '~/types/ui'
+import type { PropType } from 'vue';
+import type { HeaderLink } from '~/types/ui';
+import { getULinkProps } from '#ui/utils';
 
-const appConfig = useAppConfig()
+const appConfig = useAppConfig();
 
 const config = computed(() => ({
   wrapper: 'flex items-center gap-x-8',
@@ -89,41 +89,47 @@ const config = computed(() => ({
     name: appConfig.ui.icons.chevron,
     base: 'w-5 h-5 transform transition-transform duration-200 flex-shrink-0',
     active: 'rotate-180',
-    inactive: ''
+    inactive: '',
   },
   externalIcon: {
     name: appConfig.ui.icons.external,
-    base: 'w-3 h-3 absolute top-0.5 -right-3.5 text-gray-400 dark:text-gray-500'
+    base: 'w-3 h-3 absolute top-0.5 -right-3.5 text-gray-400 dark:text-gray-500',
   },
   default: {
     popover: {
       mode: 'hover' as const,
       openDelay: 0,
       ui: {
-        width: 'max-w-[16rem]'
-      }
-    }
-  }
-}))
+        width: 'max-w-[16rem]',
+      },
+    },
+  },
+}));
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = defineProps({
   links: {
     type: Array as PropType<HeaderLink[]>,
-    default: () => []
+    default: () => [],
   },
   class: {
     type: [String, Object, Array] as PropType<any>,
-    default: undefined
+    default: undefined,
   },
   ui: {
     type: Object as PropType<Partial<typeof config.value>>,
-    default: () => ({})
-  }
-})
+    default: () => ({}),
+  },
+});
 
-const { ui, attrs } = useUI('header.links', toRef(props, 'ui'), config, toRef(props, 'class'), true)
+const { ui, attrs } = useUI(
+  'header.links',
+  toRef(props, 'ui'),
+  config,
+  toRef(props, 'class'),
+  true
+);
 </script>

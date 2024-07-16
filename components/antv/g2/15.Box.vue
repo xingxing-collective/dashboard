@@ -19,8 +19,8 @@ const data = [
   { x: 'North Africa', y: [1, 8, 14, 18, 24] },
   { x: 'North America', y: [3, 10, 17, 28, 30] },
   { x: 'West Europe', y: [1, 7, 10, 17, 22] },
-  { x: 'West Africa', y: [1, 6, 8, 13, 16] }
-]
+  { x: 'West Africa', y: [1, 6, 8, 13, 16] },
+];
 const { container } = useChartRender((chart) => {
   chart
     .box()
@@ -37,7 +37,7 @@ const { container } = useChartRender((chart) => {
       { name: 'q1', channel: 'y1' },
       { name: 'q2', channel: 'y2' },
       { name: 'q3', channel: 'y3' },
-      { name: 'max', channel: 'y4' }
-    ])
-})
+      { name: 'max', channel: 'y4' },
+    ]);
+});
 </script>

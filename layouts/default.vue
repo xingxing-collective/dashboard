@@ -1,66 +1,80 @@
 <script setup lang="ts">
-const route = useRoute()
-const links = ref([{
-  id: 'home',
-  label: 'Home',
-  icon: 'i-heroicons-home',
-  to: '/',
-  tooltip: {
-    text: 'Home',
-    shortcuts: ['G', 'H']
-  }
-}, {
-  id: 'AntV',
-  label: 'AntV',
-  icon: 'i-heroicons-adjustments-horizontal',
-  defaultOpen: route.path.startsWith('/antv'),
-  children: [{
-    label: 'G2',
-    icon: 'i-heroicons-chart-bar',
-    to: '/antv/g2'
-  }, {
-    label: 'S2',
-    icon: 'i-heroicons-table-cells',
-    to: '/antv/s2'
-  }, {
-    label: 'L7',
-    icon: 'i-heroicons-map-16-solid',
-    defaultOpen: route.path.startsWith('/antv/l7'),
-    children: [{
-      label: 'GaodeMap',
-      to: '/antv/l7/gaodemap',
-      tooltip: {
-        text: '高德'
-      }
-    }, {
-      label: 'TencentMap',
-      to: '/antv/l7/tencentmap',
-      tooltip: {
-        text: '腾讯'
-      }
-    }, {
-      label: 'MapLibreMap',
-      to: '/antv/l7/maplibremap',
-      tooltip: {
-        text: 'MapLibre'
-      }
-    }]
-  }, {
-    label: 'X6',
-    icon: 'i-hugeicons-flow-connection',
-    defaultOpen: route.path.startsWith('/antv/x6'),
-    children: [{
-      label: 'Flowchart',
-      to: '/antv/x6/flowchart',
-      tooltip: {
-        text: '流程图'
+const route = useRoute();
+const links = ref([
+  {
+    id: 'home',
+    label: 'Home',
+    icon: 'i-heroicons-home',
+    to: '/',
+    tooltip: {
+      text: 'Home',
+      shortcuts: ['G', 'H'],
+    },
+  },
+  {
+    id: 'AntV',
+    label: 'AntV',
+    icon: 'i-heroicons-adjustments-horizontal',
+    defaultOpen: route.path.startsWith('/antv'),
+    children: [
+      {
+        label: 'G2',
+        icon: 'i-heroicons-chart-bar',
+        to: '/antv/g2',
       },
-    }]
-  }],
-  tooltip: {
-    text: 'AntV'
-  }
-}])
+      {
+        label: 'S2',
+        icon: 'i-heroicons-table-cells',
+        to: '/antv/s2',
+      },
+      {
+        label: 'L7',
+        icon: 'i-heroicons-map-16-solid',
+        defaultOpen: route.path.startsWith('/antv/l7'),
+        children: [
+          {
+            label: 'GaodeMap',
+            to: '/antv/l7/gaodemap',
+            tooltip: {
+              text: '高德',
+            },
+          },
+          {
+            label: 'TencentMap',
+            to: '/antv/l7/tencentmap',
+            tooltip: {
+              text: '腾讯',
+            },
+          },
+          {
+            label: 'MapLibreMap',
+            to: '/antv/l7/maplibremap',
+            tooltip: {
+              text: 'MapLibre',
+            },
+          },
+        ],
+      },
+      {
+        label: 'X6',
+        icon: 'i-hugeicons-flow-connection',
+        defaultOpen: route.path.startsWith('/antv/x6'),
+        children: [
+          {
+            label: 'Flowchart',
+            to: '/antv/x6/flowchart',
+            tooltip: {
+              text: '流程图',
+            },
+          },
+        ],
+      },
+    ],
+    tooltip: {
+      text: 'AntV',
+    },
+  },
+]);
 </script>
 
 <template>

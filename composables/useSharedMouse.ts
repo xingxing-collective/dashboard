@@ -1,3 +1,3 @@
-import { createSharedComposable, useMouse } from '@vueuse/core'
+import { createSharedComposable, useMouse } from '@vueuse/core';
 
-export const useSharedMouse = createSharedComposable(useMouse)
+export const useSharedMouse = createSharedComposable(useMouse);

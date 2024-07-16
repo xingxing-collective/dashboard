@@ -20,28 +20,28 @@ const data = [
   { year: '1996', value: 6 },
   { year: '1997', value: 7 },
   { year: '1998', value: 9 },
-  { year: '1999', value: 13 }
-]
+  { year: '1999', value: 13 },
+];
 const { container } = useChartRender((chart) => {
   chart
     .data(data)
     .encode('x', 'year')
     .encode('y', 'value')
     .scale('x', {
-      range: [0, 1]
+      range: [0, 1],
     })
     .scale('y', {
       domainMin: 0,
-      nice: true
-    })
+      nice: true,
+    });
 
   chart.line().label({
     text: 'value',
     style: {
       dx: -10,
-      dy: -12
-    }
-  })
-  chart.point().style('fill', 'white').tooltip(false)
-})
+      dy: -12,
+    },
+  });
+  chart.point().style('fill', 'white').tooltip(false);
+});
 </script>

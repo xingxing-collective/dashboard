@@ -16,13 +16,13 @@ const data = [
     title: '满意度',
     ranges: 100,
     measures: 80,
-    target: 85
-  }
-]
+    target: 85,
+  },
+];
 const { container } = useChartRender((chart) => {
-  chart.coordinate({ transform: [{ type: 'transpose' }] })
+  chart.coordinate({ transform: [{ type: 'transpose' }] });
 
-  chart.data(data)
+  chart.data(data);
 
   chart
     .interval()
@@ -33,12 +33,12 @@ const { container } = useChartRender((chart) => {
     .axis({
       y: {
         grid: true,
-        gridLineWidth: 2
+        gridLineWidth: 2,
       },
       x: {
-        title: false
-      }
-    })
+        title: false,
+      },
+    });
 
   chart
     .interval()
@@ -50,8 +50,8 @@ const { container } = useChartRender((chart) => {
       text: 'measures',
       position: 'right',
       textAlign: 'left',
-      dx: 5
-    })
+      dx: 5,
+    });
 
   chart
     .point()
@@ -62,7 +62,7 @@ const { container } = useChartRender((chart) => {
     .encode('size', 8)
     .tooltip(() => ({
       title: false,
-      items: [{ channel: 'y' }]
-    }))
-})
+      items: [{ channel: 'y' }],
+    }));
+});
 </script>

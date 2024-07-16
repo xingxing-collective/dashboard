@@ -30,83 +30,104 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import type { PropType } from 'vue';
 
 const config = {
   wrapper: 'flex-col items-stretch relative w-full',
-  border: 'border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-800 lg:w-[--width] flex-shrink-0',
-  grow: 'flex-1'
-}
+  border:
+    'border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-gray-800 lg:w-[--width] flex-shrink-0',
+  grow: 'flex-1',
+};
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = defineProps({
   id: {
     type: String,
-    default: undefined
+    default: undefined,
   },
   modelValue: {
     type: Boolean,
-    default: undefined
+    default: undefined,
   },
   collapsible: {
     type: Boolean,
-    default: false
+    default: false,
   },
   side: {
     type: String as PropType<'left' | 'right'>,
-    default: 'left'
+    default: 'left',
   },
   grow: {
     type: Boolean,
-    default: false
+    default: false,
   },
   resizable: {
     type: [Boolean, Object],
-    default: false
+    default: false,
   },
   width: {
     type: Number,
-    default: undefined
+    default: undefined,
   },
   class: {
     type: [String, Object, Array] as PropType<any>,
-    default: undefined
+    default: undefined,
   },
   ui: {
     type: Object as PropType<Partial<typeof config>>,
-    default: () => ({})
-  }
-})
+    default: () => ({}),
+  },
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
 
 // @ts-expect-error
-const id = props.id ? `dashboard:panel:${props.id}` : useId('$dashboard:panel')
-const { ui, attrs } = useUI('dashboard.panel', toRef(props, 'ui'), config, toRef(props, 'class'), true)
-const { el, width, onDrag, isDragging } = props.resizable ? useResizable(id, { ...(typeof props.resizable === 'object' ? props.resizable : {}), value: props.width }) : { el: undefined, width: toRef(props.width), onDrag: undefined, isDragging: undefined }
-const breakpoints = useBreakpoints(breakpointsTailwind)
+const id = props.id ? `dashboard:panel:${props.id}` : useId('$dashboard:panel');
+const { ui, attrs } = useUI(
+  'dashboard.panel',
+  toRef(props, 'ui'),
+  config,
+  toRef(props, 'class'),
+  true
+);
+const { el, width, onDrag, isDragging } = props.resizable
+  ? useResizable(id, {
+      ...(typeof props.resizable === 'object' ? props.resizable : {}),
+      value: props.width,
+    })
+  : {
+      el: undefined,
+      width: toRef(props.width),
+      onDrag: undefined,
+      isDragging: undefined,
+    };
+const breakpoints = useBreakpoints(breakpointsTailwind);
 
-const { isDashboardSidebarSlidoverOpen } = useUIState()
+const { isDashboardSidebarSlidoverOpen } = useUIState();
 
-const smallerThanLg = breakpoints.smaller('lg')
+const smallerThanLg = breakpoints.smaller('lg');
 
 const isOpen = computed({
   get() {
-    return props.modelValue !== undefined ? props.modelValue : isDashboardSidebarSlidoverOpen.value
+    return props.modelValue !== undefined
+      ? props.modelValue
+      : isDashboardSidebarSlidoverOpen.value;
   },
   set(value) {
-    props.modelValue !== undefined ? emit('update:modelValue', value) : (isDashboardSidebarSlidoverOpen.value = value)
-  }
-})
+    props.modelValue !== undefined
+      ? emit('update:modelValue', value)
+      : (isDashboardSidebarSlidoverOpen.value = value);
+  },
+});
 
 defineExpose({
   width,
-  isDragging
-})
+  isDragging,
+});
 
-provide('isOpen', isOpen)
+provide('isOpen', isOpen);
 </script>

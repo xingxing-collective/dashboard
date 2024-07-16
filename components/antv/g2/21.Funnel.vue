@@ -16,14 +16,14 @@ const data = [
   { action: '放入购物车', pv: 35000 },
   { action: '生成订单', pv: 25000 },
   { action: '支付订单', pv: 15000 },
-  { action: '完成交易', pv: 8000 }
-]
+  { action: '完成交易', pv: 8000 },
+];
 const { container } = useChartRender((chart) => {
   chart.coordinate({
-    transform: [{ type: 'transpose' }]
-  })
+    transform: [{ type: 'transpose' }],
+  });
 
-  chart.data(data)
+  chart.data(data);
 
   chart
     .interval()
@@ -37,8 +37,8 @@ const { container } = useChartRender((chart) => {
     .label({
       text: (d: any) => `${d.action}\n${d.pv}`,
       position: 'inside',
-      transform: [{ type: 'contrastReverse' }]
+      transform: [{ type: 'contrastReverse' }],
     })
-    .axis(false)
-})
+    .axis(false);
+});
 </script>

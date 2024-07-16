@@ -18,9 +18,9 @@ const { container } = useChartRender((chart) => {
       value: {
         target: 120,
         total: 400,
-        name: 'score'
-      }
+        name: 'score',
+      },
     })
-    .legend(false)
-})
+    .legend(false);
+});
 </script>

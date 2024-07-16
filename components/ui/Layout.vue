@@ -8,26 +8,32 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
+import type { PropType } from 'vue';
 
 const config = {
-  wrapper: 'fixed inset-0 flex overflow-hidden'
-}
+  wrapper: 'fixed inset-0 flex overflow-hidden',
+};
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = defineProps({
   class: {
     type: [String, Object, Array] as PropType<any>,
-    default: undefined
+    default: undefined,
   },
   ui: {
     type: Object as PropType<Partial<typeof config>>,
-    default: () => ({})
-  }
-})
+    default: () => ({}),
+  },
+});
 
-const { ui, attrs } = useUI('dashboard.layout', toRef(props, 'ui'), config, toRef(props, 'class'), true)
+const { ui, attrs } = useUI(
+  'dashboard.layout',
+  toRef(props, 'ui'),
+  config,
+  toRef(props, 'class'),
+  true
+);
 </script>

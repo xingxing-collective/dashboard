@@ -26,16 +26,16 @@ const axis = {
   titleTransform: 'translate(-50%, 0) rotate(-90)',
   lineStroke: 'black',
   tickStroke: 'black',
-  lineLineWidth: 1
-}
+  lineLineWidth: 1,
+};
 const { container } = useChartRender((chart) => {
-  chart.coordinate({ type: 'parallel' })
+  chart.coordinate({ type: 'parallel' });
 
   chart
     .line()
     .data({
       type: 'fetch',
-      value: 'https://assets.antv.antgroup.com/g2/cars3.json'
+      value: 'https://assets.antv.antgroup.com/g2/cars3.json',
     })
     .encode('position', [
       'economy (mpg)',
@@ -44,17 +44,17 @@ const { container } = useChartRender((chart) => {
       'power (hp)',
       'weight (lb)',
       '0-60 mph (s)',
-      'year'
+      'year',
     ])
     .encode('color', 'weight (lb)')
     .style('lineWidth', 1.5)
     .style('strokeOpacity', 0.4)
     .scale('color', {
       palette: 'brBG',
-      offset: t => 1 - t
+      offset: (t) => 1 - t,
     })
     .legend({
-      color: { length: 400, layout: { justifyContent: 'center' } }
+      color: { length: 400, layout: { justifyContent: 'center' } },
     })
     .axis('position', axis)
     .axis('position1', axis)
@@ -63,8 +63,8 @@ const { container } = useChartRender((chart) => {
     .axis('position4', axis)
     .axis('position5', axis)
     .axis('position6', axis)
-    .axis('position7', axis)
+    .axis('position7', axis);
 
-  chart.interaction('tooltip', { series: false })
-})
+  chart.interaction('tooltip', { series: false });
+});
 </script>

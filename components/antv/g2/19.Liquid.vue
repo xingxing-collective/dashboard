@@ -12,13 +12,10 @@
 
 <script setup lang="ts">
 const { container } = useChartRender((chart) => {
-  chart
-    .liquid()
-    .data(0.3)
-    .style({
-      outlineBorder: 4,
-      outlineDistance: 8,
-      waveLength: 128
-    })
-})
+  chart.liquid().data(0.3).style({
+    outlineBorder: 4,
+    outlineDistance: 8,
+    waveLength: 128,
+  });
+});
 </script>
