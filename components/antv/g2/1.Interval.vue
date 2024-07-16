@@ -34,9 +34,9 @@ const data = [
   { letter: 'W', frequency: 0.0236 },
   { letter: 'X', frequency: 0.0015 },
   { letter: 'Y', frequency: 0.01974 },
-  { letter: 'Z', frequency: 0.00074 }
-]
+  { letter: 'Z', frequency: 0.00074 },
+];
 const { container } = useChartRender((chart) => {
-  chart.interval().data(data).encode('x', 'letter').encode('y', 'frequency')
-})
+  chart.interval().data(data).encode('x', 'letter').encode('y', 'frequency');
+});
 </script>

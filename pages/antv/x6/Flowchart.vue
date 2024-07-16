@@ -7,19 +7,19 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Graph, Shape } from '@antv/x6'
-import { Stencil } from '@antv/x6-plugin-stencil'
-import { Transform } from '@antv/x6-plugin-transform'
-import { Selection } from '@antv/x6-plugin-selection'
-import { Snapline } from '@antv/x6-plugin-snapline'
-import { Keyboard } from '@antv/x6-plugin-keyboard'
-import { Clipboard } from '@antv/x6-plugin-clipboard'
-import { History } from '@antv/x6-plugin-history'
-import { Export } from '@antv/x6-plugin-export'
+import { Graph, Shape } from '@antv/x6';
+import { Clipboard } from '@antv/x6-plugin-clipboard';
+import { Export } from '@antv/x6-plugin-export';
+import { History } from '@antv/x6-plugin-history';
+import { Keyboard } from '@antv/x6-plugin-keyboard';
+import { Selection } from '@antv/x6-plugin-selection';
+import { Snapline } from '@antv/x6-plugin-snapline';
+import { Stencil } from '@antv/x6-plugin-stencil';
+import { Transform } from '@antv/x6-plugin-transform';
 
-const container = ref<HTMLElement>()
-const stencilContainer = ref<HTMLDivElement>()
-const graphContainer = ref<HTMLDivElement>()
+const container = ref<HTMLElement>();
+const stencilContainer = ref<HTMLDivElement>();
+const graphContainer = ref<HTMLDivElement>();
 
 const ports = reactive({
   groups: {
@@ -98,10 +98,10 @@ const ports = reactive({
       group: 'left',
     },
   ],
-})
+});
 
-const graph = ref<Graph>()
-const stencil = ref<Stencil>()
+const graph = ref<Graph>();
+const stencil = ref<Stencil>();
 
 /**
  * 初始化画布
@@ -115,7 +115,7 @@ const createGraph = () => {
       zoomAtMousePosition: true,
       modifiers: 'ctrl',
       minScale: 0.5,
-      maxScale: 3
+      maxScale: 3,
     },
     connecting: {
       router: 'manhattan',
@@ -145,10 +145,10 @@ const createGraph = () => {
             },
           },
           zIndex: 0,
-        })
+        });
       },
       validateConnection({ targetMagnet }) {
-        return !!targetMagnet
+        return !!targetMagnet;
       },
     },
     highlighting: {
@@ -162,8 +162,8 @@ const createGraph = () => {
         },
       },
     },
-  })
-}
+  });
+};
 
 /**
  * 初始化 stencil
@@ -194,10 +194,10 @@ const createStencil = (graph: Graph) => {
       columns: 2,
       columnWidth: 80,
       rowHeight: 55,
-      theme: 'dark'
+      theme: 'dark',
     },
-  })
-}
+  });
+};
 
 /**
  * 使用插件
@@ -205,20 +205,24 @@ const createStencil = (graph: Graph) => {
  */
 const usePlugins = (graph: Graph) => {
   graph
-    .use(new Transform({
-      resizing: true,
-      rotating: true,
-    }))
-    .use(new Selection({
-      rubberband: true,
-      showNodeSelectionBox: true,
-    }))
+    .use(
+      new Transform({
+        resizing: true,
+        rotating: true,
+      })
+    )
+    .use(
+      new Selection({
+        rubberband: true,
+        showNodeSelectionBox: true,
+      })
+    )
     .use(new Snapline())
     .use(new Keyboard())
     .use(new Clipboard())
     .use(new History())
-    .use(new Export())
-}
+    .use(new Export());
+};
 
 /**
  * 快捷键与事件
@@ -226,100 +230,100 @@ const usePlugins = (graph: Graph) => {
  */
 const addEventListener = (graph: Graph) => {
   graph.bindKey(['meta+c', 'ctrl+c'], () => {
-    const cells = graph.getSelectedCells()
+    const cells = graph.getSelectedCells();
     if (cells.length) {
-      graph.copy(cells)
+      graph.copy(cells);
     }
-    return false
-  })
+    return false;
+  });
   graph.bindKey(['meta+x', 'ctrl+x'], () => {
-    const cells = graph.getSelectedCells()
+    const cells = graph.getSelectedCells();
     if (cells.length) {
-      graph.cut(cells)
+      graph.cut(cells);
     }
-    return false
-  })
+    return false;
+  });
   graph.bindKey(['meta+v', 'ctrl+v'], () => {
     if (!graph.isClipboardEmpty()) {
-      const cells = graph.paste({ offset: 32 })
-      graph.cleanSelection()
-      graph.select(cells)
+      const cells = graph.paste({ offset: 32 });
+      graph.cleanSelection();
+      graph.select(cells);
     }
-    return false
-  })
+    return false;
+  });
 
-  //save 
+  //save
   graph.bindKey(['meta+s', 'ctrl+s'], () => {
-    graph.exportSVG()
-    return false
-  })
+    graph.exportSVG();
+    return false;
+  });
 
   // undo redo
   graph.bindKey(['meta+z', 'ctrl+z'], () => {
     if (graph.canUndo()) {
-      graph.undo()
+      graph.undo();
     }
-    return false
-  })
+    return false;
+  });
   graph.bindKey(['meta+shift+z', 'ctrl+shift+z'], () => {
     if (graph.canRedo()) {
-      graph.redo()
+      graph.redo();
     }
-    return false
-  })
+    return false;
+  });
 
   // select all
   graph.bindKey(['meta+a', 'ctrl+a'], () => {
-    const nodes = graph.getNodes()
+    const nodes = graph.getNodes();
     if (nodes) {
-      graph.select(nodes)
+      graph.select(nodes);
     }
-  })
+  });
 
   // delete
   graph.bindKey('backspace', () => {
-    const cells = graph.getSelectedCells()
+    const cells = graph.getSelectedCells();
     if (cells.length) {
-      graph.removeCells(cells)
+      graph.removeCells(cells);
     }
-  })
+  });
 
   // zoom
   graph.bindKey(['ctrl+1', 'meta+1'], () => {
-    const zoom = graph.zoom()
+    const zoom = graph.zoom();
     if (zoom < 1.5) {
-      graph.zoom(0.1)
+      graph.zoom(0.1);
     }
-  })
+  });
   graph.bindKey(['ctrl+2', 'meta+2'], () => {
-    const zoom = graph.zoom()
+    const zoom = graph.zoom();
     if (zoom > 0.5) {
-      graph.zoom(-0.1)
+      graph.zoom(-0.1);
     }
-  })
+  });
 
   // 控制连接桩显示/隐藏
   const showPorts = (ports: NodeListOf<SVGElement>, show: boolean) => {
     for (let i = 0, len = ports.length; i < len; i += 1) {
-      ports[i].style.visibility = show ? 'visible' : 'hidden'
+      ports[i].style.visibility = show ? 'visible' : 'hidden';
     }
-  }
+  };
 
   graph.on('node:mouseenter', () => {
-    const container = graphContainer.value!
+    const container = graphContainer.value!;
     const ports = container.querySelectorAll(
-      '.x6-port-body',
-    ) as NodeListOf<SVGElement>
-    showPorts(ports, true)
-  })
+      '.x6-port-body'
+    ) as NodeListOf<SVGElement>;
+    showPorts(ports, true);
+  });
   graph.on('node:mouseleave', () => {
-    const container = graphContainer.value!
+    const container = graphContainer.value!;
     const ports = container.querySelectorAll(
-      '.x6-port-body',
-    ) as NodeListOf<SVGElement>
-    showPorts(ports, false)
-  })
-}
+      '.x6-port-body'
+    ) as NodeListOf<SVGElement>;
+    showPorts(ports, false);
+  });
+};
 
 /**
  * 初始化图形
@@ -344,8 +348,8 @@ const createNode = (graph: Graph, stencil: Stencil) => {
       },
       ports: { ...ports },
     },
-    true,
-  )
+    true
+  );
   Graph.registerNode(
     'custom-polygon',
     {
@@ -375,8 +379,8 @@ const createNode = (graph: Graph, stencil: Stencil) => {
         ],
       },
     },
-    true,
-  )
+    true
+  );
 
   Graph.registerNode(
     'custom-circle',
@@ -397,8 +401,8 @@ const createNode = (graph: Graph, stencil: Stencil) => {
       },
       ports: { ...ports },
     },
-    true,
-  )
+    true
+  );
 
   Graph.registerNode(
     'custom-image',
@@ -441,8 +445,8 @@ const createNode = (graph: Graph, stencil: Stencil) => {
       },
       ports: { ...ports },
     },
-    true,
-  )
+    true
+  );
 
   const r1 = graph.createNode({
     shape: 'custom-rect',
@@ -453,11 +457,11 @@ const createNode = (graph: Graph, stencil: Stencil) => {
         ry: 26,
       },
     },
-  })
+  });
   const r2 = graph.createNode({
     shape: 'custom-rect',
     label: '过程',
-  })
+  });
   const r3 = graph.createNode({
     shape: 'custom-rect',
     attrs: {
@@ -467,7 +471,7 @@ const createNode = (graph: Graph, stencil: Stencil) => {
       },
     },
     label: '可选过程',
-  })
+  });
   const r4 = graph.createNode({
     shape: 'custom-polygon',
     attrs: {
@@ -476,7 +480,7 @@ const createNode = (graph: Graph, stencil: Stencil) => {
       },
     },
     label: '决策',
-  })
+  });
   const r5 = graph.createNode({
     shape: 'custom-polygon',
     attrs: {
@@ -485,12 +489,12 @@ const createNode = (graph: Graph, stencil: Stencil) => {
       },
     },
     label: '数据',
-  })
+  });
   const r6 = graph.createNode({
     shape: 'custom-circle',
     label: '连接',
-  })
-  stencil.load([r1, r2, r3, r4, r5, r6], 'group1')
+  });
+  stencil.load([r1, r2, r3, r4, r5, r6], 'group1');
 
   const imageShapes = [
     {
@@ -523,7 +527,7 @@ const createNode = (graph: Graph, stencil: Stencil) => {
       image:
         'https://gw.alipayobjects.com/zos/bmw-prod/2010ac9f-40e7-49d4-8c4a-4fcf2f83033b.svg',
     },
-  ]
+  ];
   const imageNodes = imageShapes.map((item) =>
     graph.createNode({
       shape: 'custom-image',
@@ -533,25 +537,24 @@ const createNode = (graph: Graph, stencil: Stencil) => {
           'xlink:href': item.image,
         },
       },
-    }),
-  )
-  stencil.load(imageNodes, 'group2')
-}
-
+    })
+  );
+  stencil.load(imageNodes, 'group2');
+};
 
 onMounted(() => {
-  graph.value = createGraph()
-  usePlugins(graph.value!)
-  stencil.value = createStencil(graph.value!)
-  stencilContainer.value!.appendChild(stencil.value!.container)
-  addEventListener(graph.value!)
-  createNode(graph.value!, stencil.value!)
-})
+  graph.value = createGraph();
+  usePlugins(graph.value!);
+  stencil.value = createStencil(graph.value!);
+  stencilContainer.value!.appendChild(stencil.value!.container);
+  addEventListener(graph.value!);
+  createNode(graph.value!, stencil.value!);
+});
 
 useSeoMeta({
   title: 'X6 | AntV | Dashboard',
-  description: 'X6 | AntV | Dashboard'
-})
+  description: 'X6 | AntV | Dashboard',
+});
 </script>
 <style>
 .x6-widget-stencil {

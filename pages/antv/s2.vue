@@ -9,14 +9,12 @@
 </template>
 
 <script setup lang="ts">
-const components = import.meta.glob<Component>([
-  '~/components/antv/s2/**'
-], {
+const components = import.meta.glob<Component>(['~/components/antv/s2/**'], {
   eager: true,
-  import: 'default'
-})
+  import: 'default',
+});
 useSeoMeta({
   title: 'S2 | AntV | Dashboard',
-  description: 'S2 | AntV | Dashboard'
-})
+  description: 'S2 | AntV | Dashboard',
+});
 </script>

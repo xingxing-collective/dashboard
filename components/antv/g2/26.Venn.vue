@@ -23,21 +23,21 @@ const { container } = useChartRender((chart) => {
           padding: 8,
           sets: 'sets',
           size: 'size',
-          as: ['key', 'path']
-        }
-      ]
+          as: ['key', 'path'],
+        },
+      ],
     })
     .encode('d', 'path')
     .encode('color', 'key')
     .label({
       position: 'inside',
       text: (d: any) => d.label || '',
-      transform: [{ type: 'contrastReverse' }]
+      transform: [{ type: 'contrastReverse' }],
     })
     .style('opacity', (d: any) => (d.sets.length > 1 ? 0.001 : 0.5))
     .state('inactive', { opacity: 0.2 })
     .state('active', { opacity: 0.8 })
     .interaction('elementHighlight', true)
-    .legend(false)
-})
+    .legend(false);
+});
 </script>

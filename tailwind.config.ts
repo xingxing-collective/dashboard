@@ -1,132 +1,132 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
-export default <Partial<Config>> {
+export default (<Partial<Config>>{
   theme: {
     extend: {
       colors: {
         background: 'rgb(var(--ui-background) / <alpha-value>)',
-        foreground: 'rgb(var(--ui-foreground) / <alpha-value>)'
+        foreground: 'rgb(var(--ui-foreground) / <alpha-value>)',
       },
       typography: (theme: any) => {
         return {
           DEFAULT: {
             css: {
               'h1, h2, h3, h4': {
-                'fontWeight': theme('fontWeight.bold'),
-                'scroll-margin-top': 'var(--scroll-mt)'
+                fontWeight: theme('fontWeight.bold'),
+                'scroll-margin-top': 'var(--scroll-mt)',
               },
               'h1 a, h2 a, h3 a, h4 a': {
                 borderBottom: 'none !important',
                 color: 'inherit',
-                fontWeight: 'inherit'
+                fontWeight: 'inherit',
               },
-              'a': {
+              a: {
                 fontWeight: theme('fontWeight.medium'),
                 textDecoration: 'none',
-                borderBottom: '1px solid transparent'
+                borderBottom: '1px solid transparent',
               },
               'a:hover': {
-                borderColor: 'var(--tw-prose-links)'
+                borderColor: 'var(--tw-prose-links)',
               },
               'a:has(> code)': {
-                borderColor: 'transparent !important'
+                borderColor: 'transparent !important',
               },
               'a code': {
                 color: 'var(--tw-prose-code)',
-                border: '1px dashed var(--tw-prose-pre-border)'
+                border: '1px dashed var(--tw-prose-pre-border)',
               },
               'a:hover code': {
                 color: 'var(--tw-prose-links)',
-                borderColor: 'var(--tw-prose-links)'
+                borderColor: 'var(--tw-prose-links)',
               },
-              'pre': {
+              pre: {
                 borderRadius: '0.375rem',
                 border: '1px solid var(--tw-prose-pre-border)',
                 color: 'var(--tw-prose-pre-code) !important',
                 backgroundColor: 'var(--tw-prose-pre-bg) !important',
                 whiteSpace: 'pre-wrap',
-                wordBreak: 'break-word'
+                wordBreak: 'break-word',
               },
-              'code': {
+              code: {
                 backgroundColor: 'var(--tw-prose-pre-bg)',
                 padding: '0 0.375rem',
                 display: 'inline-block',
                 borderRadius: '0.375rem',
-                border: '1px solid var(--tw-prose-pre-border)'
+                border: '1px solid var(--tw-prose-pre-border)',
               },
               'code::before': {
-                content: ''
+                content: '',
               },
               'code::after': {
-                content: ''
+                content: '',
               },
               'blockquote p:first-of-type::before': {
-                content: ''
+                content: '',
               },
               'blockquote p:last-of-type::after': {
-                content: ''
+                content: '',
               },
               'input[type="checkbox"]': {
-                'color': 'rgb(var(--color-primary-500))',
-                'borderRadius': theme('borderRadius.DEFAULT'),
-                'borderColor': 'rgb(var(--color-gray-300))',
-                'height': theme('spacing.4'),
-                'width': theme('spacing.4'),
-                'marginTop': '-3.5px !important',
-                'marginBottom': '0 !important',
+                color: 'rgb(var(--color-primary-500))',
+                borderRadius: theme('borderRadius.DEFAULT'),
+                borderColor: 'rgb(var(--color-gray-300))',
+                height: theme('spacing.4'),
+                width: theme('spacing.4'),
+                marginTop: '-3.5px !important',
+                marginBottom: '0 !important',
                 '&:focus': {
-                  '--tw-ring-offset-width': 0
-                }
+                  '--tw-ring-offset-width': 0,
+                },
               },
               'input[type="checkbox"]:checked': {
-                borderColor: 'rgb(var(--color-primary-500))'
+                borderColor: 'rgb(var(--color-primary-500))',
               },
               'input[type="checkbox"]:disabled': {
                 opacity: 0.5,
-                cursor: 'not-allowed'
+                cursor: 'not-allowed',
               },
               'ul.contains-task-list': {
-                marginLeft: '-1.625em'
+                marginLeft: '-1.625em',
               },
               'ul ul': {
-                paddingLeft: theme('padding.6')
+                paddingLeft: theme('padding.6'),
               },
               'ul ol': {
-                paddingLeft: theme('padding.6')
+                paddingLeft: theme('padding.6'),
               },
               'ul > li.task-list-item': {
-                paddingLeft: '0 !important'
+                paddingLeft: '0 !important',
               },
               'ul > li.task-list-item input': {
-                marginRight: '7px'
+                marginRight: '7px',
               },
               'ul > li.task-list-item > ul.contains-task-list': {
-                marginLeft: 'initial'
+                marginLeft: 'initial',
               },
               'ul > li.task-list-item a': {
-                marginBottom: 0
+                marginBottom: 0,
               },
               'ul > li.task-list-item::marker': {
-                content: 'none'
+                content: 'none',
               },
               'ul > li > p': {
-                margin: 0
+                margin: 0,
               },
               'ul > li > span.issue-badge, p > span.issue-badge': {
                 verticalAlign: 'text-top',
-                margin: '0 !important'
+                margin: '0 !important',
               },
               'ul > li > button': {
-                verticalAlign: 'baseline !important'
+                verticalAlign: 'baseline !important',
               },
-              'table': {
+              table: {
                 display: 'block',
-                overflowX: 'auto'
+                overflowX: 'auto',
               },
               'table code': {
-                display: 'inline-flex'
-              }
-            }
+                display: 'inline-flex',
+              },
+            },
           },
           primary: {
             css: {
@@ -163,24 +163,24 @@ export default <Partial<Config>> {
               '--tw-prose-invert-pre-bg': 'rgb(var(--color-gray-800))',
               '--tw-prose-invert-pre-border': 'rgb(var(--color-gray-700))',
               '--tw-prose-invert-th-borders': 'rgb(var(--color-gray-700))',
-              '--tw-prose-invert-td-borders': 'rgb(var(--color-gray-800))'
-            }
+              '--tw-prose-invert-td-borders': 'rgb(var(--color-gray-800))',
+            },
           },
           invert: {
             css: {
               '--tw-prose-pre-border': 'var(--tw-prose-invert-pre-border)',
               'input[type="checkbox"]': {
                 backgroundColor: 'rgb(var(--color-gray-800))',
-                borderColor: 'rgb(var(--color-gray-700))'
+                borderColor: 'rgb(var(--color-gray-700))',
               },
               'input[type="checkbox"]:checked': {
                 backgroundColor: 'rgb(var(--color-primary-400))',
-                borderColor: 'rgb(var(--color-primary-400))'
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+                borderColor: 'rgb(var(--color-primary-400))',
+              },
+            },
+          },
+        };
+      },
+    },
+  },
+});

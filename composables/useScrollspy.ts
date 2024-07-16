@@ -3,49 +3,45 @@
  * Useful for table of contents live style updates.
  */
 export const useScrollspy = () => {
-  const observer = ref<IntersectionObserver>()
-  const visibleHeadings = ref<string[]>([])
-  const activeHeadings = ref<string[]>([])
+  const observer = ref<IntersectionObserver>();
+  const visibleHeadings = ref<string[]>([]);
+  const activeHeadings = ref<string[]>([]);
 
   const observerCallback = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      const id = entry.target.id
+    for (const entry of entries) {
+      const id = entry.target.id;
 
-      if (entry.isIntersecting) {
-        visibleHeadings.value = [...visibleHeadings.value, id]
-      } else {
-        visibleHeadings.value = visibleHeadings.value.filter(h => h !== id)
-      }
-    })
-  }
+      visibleHeadings.value = entry.isIntersecting
+        ? [...visibleHeadings.value, id]
+        : visibleHeadings.value.filter((h) => h !== id);
+    }
+  };
 
   const updateHeadings = (headings: Element[]) => {
-    headings.forEach((heading) => {
+    for (const heading of headings) {
       if (!observer.value) {
-        return
+        continue;
       }
 
-      observer.value.observe(heading)
-    })
-  }
+      observer.value.observe(heading);
+    }
+  };
 
   watch(visibleHeadings, (val, oldVal) => {
-    if (val.length === 0) {
-      activeHeadings.value = oldVal
-    } else {
-      activeHeadings.value = val
-    }
-  })
+    activeHeadings.value = val.length === 0 ? oldVal : val;
+  });
 
   // Create intersection observer
-  onBeforeMount(() => (observer.value = new IntersectionObserver(observerCallback)))
+  onBeforeMount(
+    () => (observer.value = new IntersectionObserver(observerCallback))
+  );
 
   // Destroy it
-  onBeforeUnmount(() => observer.value?.disconnect())
+  onBeforeUnmount(() => observer.value?.disconnect());
 
   return {
     visibleHeadings,
     activeHeadings,
-    updateHeadings
-  }
-}
+    updateHeadings,
+  };
+};

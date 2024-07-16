@@ -62,7 +62,7 @@ jobs:
         run: pnpm lint
 
       - name: Prepare environment
-        run: pnpm postinstall
+        run: pnpm prepare
 
       # - name: Run test suite
       #   run: pnpm test

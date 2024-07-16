@@ -17,53 +17,60 @@
 </template>
 <script setup lang="ts">
 const previews = computed(() => {
-  const colorMode = useColorMode()
-  return [{
-    title: 'AntV G2',
-    image: {
-      src: `/images/antv/${colorMode.value}/g2.png`,
-      alt: 'AntV G2'
+  const colorMode = useColorMode();
+  return [
+    {
+      title: 'AntV G2',
+      image: {
+        src: `/images/antv/${colorMode.value}/g2.png`,
+        alt: 'AntV G2',
+      },
+      url: '/antv/g2',
     },
-    url: '/antv/g2'
-  }, {
-    title: 'AntV S2',
-    image: {
-      src: `/images/antv/${colorMode.value}/s2.png`,
-      alt: 'AntV S2'
+    {
+      title: 'AntV S2',
+      image: {
+        src: `/images/antv/${colorMode.value}/s2.png`,
+        alt: 'AntV S2',
+      },
+      url: '/antv/s2',
     },
-    url: '/antv/s2'
-  }, {
-    title: 'AntV L7 Gaode Map',
-    image: {
-      src: `/images/antv/${colorMode.value}/l7/gaode.png`,
-      alt: 'AntV L7 Gaode Map'
+    {
+      title: 'AntV L7 Gaode Map',
+      image: {
+        src: `/images/antv/${colorMode.value}/l7/gaode.png`,
+        alt: 'AntV L7 Gaode Map',
+      },
+      url: '/antv/l7/gaodemap',
     },
-    url: '/antv/l7/gaodemap'
-  }, {
-    title: 'AntV L7 MapLibre Map',
-    image: {
-      src: `/images/antv/${colorMode.value}/l7/map-libre.png`,
-      alt: 'AntV L7 MapLibre Map'
+    {
+      title: 'AntV L7 MapLibre Map',
+      image: {
+        src: `/images/antv/${colorMode.value}/l7/map-libre.png`,
+        alt: 'AntV L7 MapLibre Map',
+      },
+      url: '/antv/l7/maplibremap',
     },
-    url: '/antv/l7/maplibremap'
-  }, {
-    title: 'AntV L7 Tencent Map',
-    image: {
-      src: `/images/antv/light/l7/tencent.png`,
-      alt: 'AntV L7 Tencent Map'
+    {
+      title: 'AntV L7 Tencent Map',
+      image: {
+        src: `/images/antv/light/l7/tencent.png`,
+        alt: 'AntV L7 Tencent Map',
+      },
+      url: '/antv/l7/tencentmap',
     },
-    url: '/antv/l7/tencentmap'
-  }, {
-    title: 'AntV X6 Flowchart',
-    image: {
-      src: `/images/antv/${colorMode.value}/x6/flowchart.png`,
-      alt: 'AntV X6 Flowchart'
+    {
+      title: 'AntV X6 Flowchart',
+      image: {
+        src: `/images/antv/${colorMode.value}/x6/flowchart.png`,
+        alt: 'AntV X6 Flowchart',
+      },
+      url: '/antv/x6/flowchart',
     },
-    url: '/antv/x6/flowchart'
-  }]
-})
+  ];
+});
 useSeoMeta({
   title: 'Dashboard Index',
-  description: 'Dashboard Index'
-})
+  description: 'Dashboard Index',
+});
 </script>

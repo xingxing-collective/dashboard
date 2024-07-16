@@ -8,39 +8,41 @@
 </template>
 
 <script setup lang="ts">
-const { container, dataCfg, options } = useSheetRender('table')
+const { container, dataCfg, options } = useSheetRender('table');
 dataCfg.value = {
   fields: {
-    columns: ['province', 'city', 'type', 'price', 'cost']
+    columns: ['province', 'city', 'type', 'price', 'cost'],
   },
   meta: [
     {
       field: 'province',
-      name: '省份'
+      name: '省份',
     },
     {
       field: 'city',
-      name: '城市'
+      name: '城市',
     },
     {
       field: 'type',
-      name: '商品类别'
+      name: '商品类别',
     },
     {
       field: 'price',
-      name: '价格'
+      name: '价格',
     },
     {
       field: 'cost',
-      name: '成本'
-    }
+      name: '成本',
+    },
   ],
-  data: await $fetch('https://assets.antv.antgroup.com/s2/basic-table-mode.json')
-}
+  data: await $fetch(
+    'https://assets.antv.antgroup.com/s2/basic-table-mode.json'
+  ),
+};
 options.value = {
   showSeriesNumber: true,
   placeholder: (_meta) => {
-    return '-'
-  }
-}
+    return '-';
+  },
+};
 </script>

@@ -20,18 +20,18 @@ const data = [
   { year: '1996', value: 31056 },
   { year: '1997', value: 31982 },
   { year: '1998', value: 32040 },
-  { year: '1999', value: 33233 }
-]
+  { year: '1999', value: 33233 },
+];
 const { container } = useChartRender((chart) => {
-  chart.data(data)
+  chart.data(data);
   chart
     .area()
-    .encode('x', (d: typeof data[0]) => d.year)
+    .encode('x', (d: (typeof data)[0]) => d.year)
     .encode('y', 'value')
     .encode('shape', 'area') // 'area', 'smooth', 'hvh', 'vh', 'hv'
     .style('opacity', 0.2)
-    .axis('y', { labelFormatter: '~s', title: false })
+    .axis('y', { labelFormatter: '~s', title: false });
 
-  chart.line().encode('x', 'year').encode('y', 'value').encode('shape', 'line') // 'line', 'smooth', 'vh', 'hv', 'hvh'
-})
+  chart.line().encode('x', 'year').encode('y', 'value').encode('shape', 'line'); // 'line', 'smooth', 'vh', 'hv', 'hvh'
+});
 </script>

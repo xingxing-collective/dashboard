@@ -20,10 +20,10 @@ const { container } = useChartRender((chart) => {
         type: 'kde',
         field: 'y',
         groupBy: ['x'],
-        size: 20
-      }
-    ]
-  })
+        size: 20,
+      },
+    ],
+  });
 
   chart
     .density()
@@ -31,6 +31,6 @@ const { container } = useChartRender((chart) => {
     .encode('y', 'y')
     .encode('color', 'x')
     .encode('size', 'size')
-    .tooltip(false)
-})
+    .tooltip(false);
+});
 </script>

@@ -10,17 +10,23 @@
 </template>
 
 <script setup lang="ts">
-const componentModules = import.meta.glob<Component>('~/components/antv/g2/**', {
-  eager: true,
-  import: 'default'
-})
+const componentModules = import.meta.glob<Component>(
+  '~/components/antv/g2/**',
+  {
+    eager: true,
+    import: 'default',
+  }
+);
 const components = computed(() => {
   return Object.entries(componentModules).sort((a, b) => {
-    return parseInt(a[0].match(/\/(\d+)\./)![1], 10) - parseInt(b[0].match(/\/(\d+)\./)![1], 10)
-  })
-})
+    return (
+      Number.parseInt(a[0].match(/\/(\d+)\./)![1], 10) -
+      Number.parseInt(b[0].match(/\/(\d+)\./)![1], 10)
+    );
+  });
+});
 useSeoMeta({
   title: 'G2 | AntV | Dashboard',
-  description: 'G2 | AntV | Dashboard'
-})
+  description: 'G2 | AntV | Dashboard',
+});
 </script>

@@ -161,55 +161,65 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { Disclosure, DisclosureButton, DisclosurePanel, provideUseId } from '@headlessui/vue'
-import { twMerge, twJoin } from 'tailwind-merge'
-import { getULinkProps } from '#ui/utils'
-import type { ChipColor } from '#ui/types'
-import type { DashboardSidebarLink } from '~/types/ui'
-import { useId } from '#imports'
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  provideUseId,
+} from '@headlessui/vue';
+import { twJoin, twMerge } from 'tailwind-merge';
+import type { PropType } from 'vue';
+import type { DashboardSidebarLink } from '~/types/ui';
+import { useId } from '#imports';
+import type { ChipColor } from '#ui/types';
+import { getULinkProps } from '#ui/utils';
 
-const appConfig = useAppConfig()
+const appConfig = useAppConfig();
 
 const config = computed(() => ({
   wrapper: 'relative !min-h-[auto] !min-w-[auto]',
   container: '!overflow-visible',
   base: 'group relative flex items-center gap-1.5 px-2.5 py-1.5 w-full rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary-500 dark:focus-visible:before:ring-primary-400 before:absolute before:inset-px before:rounded-md disabled:cursor-not-allowed disabled:opacity-75',
-  active: 'text-gray-900 dark:text-white before:bg-gray-100 dark:before:bg-gray-800',
-  inactive: 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50',
+  active:
+    'text-gray-900 dark:text-white before:bg-gray-100 dark:before:bg-gray-800',
+  inactive:
+    'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:before:bg-gray-50 dark:hover:before:bg-gray-800/50',
   static: 'text-gray-900 dark:text-white cursor-auto',
   icon: {
     base: 'flex-shrink-0 w-5 h-5 relative',
     active: 'text-gray-900 dark:text-white',
-    inactive: 'text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-200'
+    inactive:
+      'text-gray-400 dark:text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-200',
   },
   trailingIcon: {
     name: appConfig.ui.icons.chevron,
     base: 'ml-auto w-5 h-5 transform transition-transform duration-200 flex-shrink-0',
     active: '',
-    inactive: '-rotate-90'
+    inactive: '-rotate-90',
   },
   avatar: {
     base: 'flex-shrink-0',
-    size: '2xs' as const
+    size: '2xs' as const,
   },
   chip: {
     base: 'flex-shrink-0 mx-2.5',
-    size: 'sm' as const
+    size: 'sm' as const,
   },
   badge: {
     base: 'flex-shrink-0 ml-auto relative rounded',
     color: 'gray' as const,
     variant: 'solid' as const,
-    size: 'xs' as const
+    size: 'xs' as const,
   },
   label: 'text-sm truncate relative',
   dot: {
     wrapper: 'w-px h-full mx-[9.5px] bg-gray-200 dark:bg-gray-700 relative',
-    after: 'after:absolute after:z-[1] after:w-px after:h-full after:bg-gray-200 after:dark:bg-gray-700 after:transform after:translate-y-full after:inset-x-0',
+    after:
+      'after:absolute after:z-[1] after:w-px after:h-full after:bg-gray-200 after:dark:bg-gray-700 after:transform after:translate-y-full after:inset-x-0',
     base: 'w-1 h-1 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2',
     active: 'bg-gray-900 dark:bg-white',
-    inactive: 'bg-gray-400 dark:bg-gray-500 group-hover:bg-gray-700 dark:group-hover:bg-gray-200'
+    inactive:
+      'bg-gray-400 dark:bg-gray-500 group-hover:bg-gray-700 dark:group-hover:bg-gray-200',
   },
   tooltip: {
     strategy: 'override',
@@ -219,111 +229,125 @@ const config = computed(() => ({
       enterToClass: 'opacity-100',
       leaveActiveClass: 'transition ease-in duration-150',
       leaveFromClass: 'opacity-100',
-      leaveToClass: 'opacity-0'
-    }
+      leaveToClass: 'opacity-0',
+    },
   },
   transition: {
-    enterActiveClass: 'overflow-hidden transition-[height] duration-200 ease-out',
-    leaveActiveClass: 'overflow-hidden transition-[height] duration-200 ease-out'
-  }
-}))
+    enterActiveClass:
+      'overflow-hidden transition-[height] duration-200 ease-out',
+    leaveActiveClass:
+      'overflow-hidden transition-[height] duration-200 ease-out',
+  },
+}));
 
 defineOptions({
-  inheritAttrs: false
-})
+  inheritAttrs: false,
+});
 
 const props = defineProps({
   draggable: {
     type: Boolean,
-    default: false
+    default: false,
   },
   level: {
     type: Number,
-    default: 0
+    default: 0,
   },
   links: {
     type: Array as PropType<DashboardSidebarLink[]>,
-    default: () => []
+    default: () => [],
   },
   class: {
     type: [String, Object, Array] as PropType<any>,
-    default: undefined
+    default: undefined,
   },
   ui: {
     type: Object as PropType<Partial<typeof config.value>>,
-    default: () => ({})
-  }
-})
+    default: () => ({}),
+  },
+});
 
-const emit = defineEmits(['update:links'])
+const emit = defineEmits(['update:links']);
 
-let Container: any
-let Draggable: any
+let Container: any;
+let Draggable: any;
 
 if (props.draggable) {
-  await import('vue3-smooth-dnd' as string).then(({ Container: _Container, Draggable: _Draggable }) => {
-    Container = _Container
-    Draggable = _Draggable
-  }).catch()
+  await import('vue3-smooth-dnd' as string)
+    .then(({ Container: _Container, Draggable: _Draggable }) => {
+      Container = _Container;
+      Draggable = _Draggable;
+    })
+    .catch();
 }
 
-const isDragging = ref(false)
+const isDragging = ref(false);
 
-const { ui, attrs } = useUI('dashboard.sidebar.links', toRef(props, 'ui'), config, toRef(props, 'class'), true)
+const { ui, attrs } = useUI(
+  'dashboard.sidebar.links',
+  toRef(props, 'ui'),
+  config,
+  toRef(props, 'class'),
+  true
+);
 
 function onEnter(_el: Element, done: () => void) {
-  const el = _el as HTMLElement
-  el.style.height = '0'
-  el.offsetHeight // Trigger a reflow, flushing the CSS changes
-  el.style.height = el.scrollHeight + 'px'
+  const el = _el as HTMLElement;
+  el.style.height = '0';
+  el.offsetHeight; // Trigger a reflow, flushing the CSS changes
+  el.style.height = el.scrollHeight + 'px';
 
-  el.addEventListener('transitionend', done, { once: true })
+  el.addEventListener('transitionend', done, { once: true });
 }
 
 function onBeforeLeave(_el: Element) {
-  const el = _el as HTMLElement
-  el.style.height = el.scrollHeight + 'px'
-  el.offsetHeight // Trigger a reflow, flushing the CSS changes
+  const el = _el as HTMLElement;
+  el.style.height = el.scrollHeight + 'px';
+  el.offsetHeight; // Trigger a reflow, flushing the CSS changes
 }
 
 function onAfterEnter(_el: Element) {
-  const el = _el as HTMLElement
-  el.style.height = 'auto'
+  const el = _el as HTMLElement;
+  el.style.height = 'auto';
 }
 
 function onLeave(_el: Element, done: () => void) {
-  const el = _el as HTMLElement
-  el.style.height = '0'
+  const el = _el as HTMLElement;
+  el.style.height = '0';
 
-  el.addEventListener('transitionend', done, { once: true })
+  el.addEventListener('transitionend', done, { once: true });
 }
 
-function onDrop(results: { removedIndex: number, addedIndex: number, payload: any }) {
-  const { removedIndex, addedIndex, payload } = results
-  const links = [...props.links]
+function onDrop(results: {
+  removedIndex: number;
+  addedIndex: number;
+  payload: any;
+}) {
+  const { removedIndex, addedIndex, payload } = results;
+  const links = [...props.links];
 
   if (removedIndex === null && addedIndex === null) {
-    return
+    return;
   }
 
-  let itemToAdd = payload
+  let itemToAdd = payload;
 
   if (removedIndex !== null) {
-    itemToAdd = links.splice(removedIndex, 1)[0]
+    itemToAdd = links.splice(removedIndex, 1)[0];
   }
   if (addedIndex !== null) {
-    links.splice(addedIndex, 0, itemToAdd)
+    links.splice(addedIndex, 0, itemToAdd);
   }
 
-  emit('update:links', links)
+  emit('update:links', links);
 }
 
 function fixActionRestriction() {
   document.body.classList.remove(
     'smooth-dnd-no-user-select',
     'smooth-dnd-disable-touch-action'
-  )
+  );
 }
 
-provideUseId(() => useId())
+provideUseId(() => useId());
 </script>

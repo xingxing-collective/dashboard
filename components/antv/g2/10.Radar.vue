@@ -31,17 +31,17 @@ const data = [
   { item: 'Sales', type: 'a', score: 60 },
   { item: 'Sales', type: 'b', score: 40 },
   { item: 'UX', type: 'a', score: 50 },
-  { item: 'UX', type: 'b', score: 60 }
-]
+  { item: 'UX', type: 'b', score: 60 },
+];
 const { container } = useChartRender((chart) => {
-  chart.coordinate({ type: 'polar' })
+  chart.coordinate({ type: 'polar' });
 
   chart
     .data(data)
     .scale('x', { padding: 0.5, align: 0 })
     .scale('y', { tickCount: 5 })
     .axis('x', { grid: true })
-    .axis('y', { zIndex: 1, title: false })
+    .axis('y', { zIndex: 1, title: false });
 
   chart
     .area()
@@ -50,7 +50,7 @@ const { container } = useChartRender((chart) => {
     .encode('color', 'type')
     .encode('shape', 'smooth')
     .style('fillOpacity', 0.5)
-    .scale('y', { domainMax: 80 })
+    .scale('y', { domainMax: 80 });
 
   chart
     .line()
@@ -58,7 +58,7 @@ const { container } = useChartRender((chart) => {
     .encode('y', 'score')
     .encode('color', 'type')
     .encode('shape', 'smooth')
-    .style('lineWidth', 2)
-  chart.interaction('tooltip', { crosshairsLineDash: [4, 4] })
-})
+    .style('lineWidth', 2);
+  chart.interaction('tooltip', { crosshairsLineDash: [4, 4] });
+});
 </script>

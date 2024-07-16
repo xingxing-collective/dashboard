@@ -1,11 +1,12 @@
-// @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
+import unjs from 'eslint-config-unjs';
 
-export default withNuxt({
+export default unjs({
+  ignores: ['**/.output', '**/.nitro', '**/.netlify', '**/.nuxt', '**/*.gen.*'],
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
-    'vue/multi-word-component-names': 'off',
-    '@typescript-eslint/ban-types': 'off',
-    '@typescript-eslint/ban-ts-comment': 'warn'
-  }
-})
+    'unicorn/no-null': 0,
+    'no-undef': 0,
+    '@typescript-eslint/no-unused-vars': 0,
+    'unicorn/filename-case': 0,
+    'unicorn/consistent-function-scoping': 0,
+  },
+});

@@ -38,9 +38,9 @@
 const { container: line } = useChartRender((chart) => {
   const data = [
     264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513,
-    546, 983, 340, 539, 243, 226, 192
-  ]
-  chart.data(data)
+    546, 983, 340, 539, 243, 226, 192,
+  ];
+  chart.data(data);
 
   chart
     .line()
@@ -56,23 +56,24 @@ const { container: line } = useChartRender((chart) => {
       dx: -10,
       dy: -10,
       connector: true,
-      fontSize: 10
+      fontSize: 10,
     })
-    .axis(false)
+    .axis(false);
 
   chart.interaction('tooltip', {
-    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) => items[0].value
-  })
-})
+    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) =>
+      items[0].value,
+  });
+});
 const { container: area } = useChartRender((chart) => {
   const data = [
     264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513,
-    546, 983, 340, 539, 243, 226, 192
-  ]
+    546, 983, 340, 539, 243, 226, 192,
+  ];
 
-  chart.data(data)
+  chart.data(data);
 
-  chart.data(data)
+  chart.data(data);
 
   chart
     .area()
@@ -83,24 +84,25 @@ const { container: area } = useChartRender((chart) => {
     .style('fill', 'linear-gradient(-90deg, white 0%, darkgreen 100%)')
     .style('fillOpacity', 0.6)
     .animate('enter', { type: 'fadeIn' })
-    .axis(false)
+    .axis(false);
 
   chart.interaction('tooltip', {
-    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) => items[0].value
-  })
-})
+    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) =>
+      items[0].value,
+  });
+});
 const { container: column } = useChartRender((chart) => {
   const data = [
     264, 417, 438, 887, 309, 397, 550, 575, 563, 430, 525, 592, 492, 467, 513,
-    546, 983, 340, 539, 243, 226, 192
-  ]
-  chart.data(data)
+    546, 983, 340, 539, 243, 226, 192,
+  ];
+  chart.data(data);
 
   chart
     .interval()
     .encode('x', (_: any, idx: any) => idx)
     .encode('y', (d: any) => d)
-    .axis(false)
+    .axis(false);
 
   chart
     .lineY()
@@ -113,14 +115,15 @@ const { container: column } = useChartRender((chart) => {
       text: 'value = 700',
       position: 'right',
       dx: -10,
-      textBaseline: 'bottom'
-    })
+      textBaseline: 'bottom',
+    });
   chart.interaction('tooltip', {
-    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) => items[0].value
-  })
-})
+    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) =>
+      items[0].value,
+  });
+});
 const { container: pie } = useChartRender((chart) => {
-  chart.coordinate({ type: 'theta' })
+  chart.coordinate({ type: 'theta' });
 
   chart
     .interval()
@@ -129,7 +132,7 @@ const { container: pie } = useChartRender((chart) => {
       { id: 'sass', value: 220 },
       { id: 'php', value: 325 },
       { id: 'elixir', value: 561 },
-      { id: 'rust', value: 54 }
+      { id: 'rust', value: 54 },
     ])
     .transform({ type: 'stackY' })
     .encode('y', 'value')
@@ -139,17 +142,18 @@ const { container: pie } = useChartRender((chart) => {
     .style('lineWidth', 1)
     .animate('enter', { type: 'waveIn' })
     .axis(false)
-    .legend(false)
+    .legend(false);
 
   chart.interaction('tooltip', {
-    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) => items[0].value
-  })
-})
+    render: (e: any, { _title, items }: Record<'_title' | 'items', any>) =>
+      items[0].value,
+  });
+});
 const { container: progress } = useChartRender((chart) => {
-  const progress = 0.7
+  const progress = 0.7;
   chart.coordinate({
-    transform: [{ type: 'transpose' }]
-  })
+    transform: [{ type: 'transpose' }],
+  });
 
   chart
     .interval()
@@ -159,7 +163,7 @@ const { container: progress } = useChartRender((chart) => {
     .scale('y', { domain: [0, 1] })
     .scale('color', { range: ['#000000', '#a0ff03'] })
     .legend(false)
-    .axis(false)
+    .axis(false);
 
   chart.text().style({
     text: `${progress * 100}%`,
@@ -167,15 +171,15 @@ const { container: progress } = useChartRender((chart) => {
     y: '50%',
     textAlign: 'center',
     fontSize: 16,
-    fontStyle: 'bold'
-  })
+    fontStyle: 'bold',
+  });
 
-  chart.interaction('tooltip', false)
-})
+  chart.interaction('tooltip', false);
+});
 const { container: ring } = useChartRender((chart) => {
-  const progress = 0.7
+  const progress = 0.7;
 
-  chart.coordinate({ type: 'theta', innerRadius: 0.7 })
+  chart.coordinate({ type: 'theta', innerRadius: 0.7 });
 
   chart
     .interval()
@@ -186,16 +190,16 @@ const { container: ring } = useChartRender((chart) => {
     .scale('color', { range: ['#000000', '#a0ff03'] })
     .animate('enter', { type: 'waveIn' })
     .axis(false)
-    .legend(false)
+    .legend(false);
   chart.text().style({
     text: `${progress * 100}%`,
     x: '50%',
     y: '50%',
     textAlign: 'center',
     fontSize: 16,
-    fontStyle: 'bold'
-  })
+    fontStyle: 'bold',
+  });
 
-  chart.interaction('tooltip', false)
-})
+  chart.interaction('tooltip', false);
+});
 </script>

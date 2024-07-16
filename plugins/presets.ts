@@ -1,9 +1,9 @@
 export default defineNuxtPlugin(() => {
-  const appConfig = useAppConfig()
+  const appConfig = useAppConfig();
 
   return {
     provide: {
-      ui: appConfig.ui.presets
-    }
-  }
-})
+      ui: appConfig.ui.presets,
+    },
+  };
+});

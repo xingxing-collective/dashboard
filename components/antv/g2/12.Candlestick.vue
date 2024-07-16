@@ -21,15 +21,15 @@ const { container } = useChartRender((chart) => {
           type: 'map',
           callback: (d: any) => ({
             ...d,
-            Date: new Date(d.Date)
-          })
-        }
-      ]
+            Date: new Date(d.Date),
+          }),
+        },
+      ],
     })
     .scale('color', {
       domain: [1, 0, -1],
-      range: ['#4daf4a', '#999999', '#e41a1c']
-    })
+      range: ['#4daf4a', '#999999', '#e41a1c'],
+    });
 
   chart
     .link()
@@ -38,12 +38,12 @@ const { container } = useChartRender((chart) => {
     .encode('color', (d: any) => Math.sign(d.Close - d.Open)) // For LegendFilter.
     .style('stroke', 'black')
     .tooltip({
-      title: d => d.Date.toLocaleString(),
+      title: (d) => d.Date.toLocaleString(),
       items: [
         { field: 'Low', name: 'low' },
-        { field: 'High', name: 'high' }
-      ]
-    })
+        { field: 'High', name: 'high' },
+      ],
+    });
 
   chart
     .link()
@@ -58,10 +58,10 @@ const { container } = useChartRender((chart) => {
       title: '',
       items: [
         { field: 'Open', name: 'open' },
-        { field: 'Close', name: 'close' }
-      ]
-    })
+        { field: 'Close', name: 'close' },
+      ],
+    });
 
-  chart.interaction('tooltip', { shared: true, groupName: false })
-})
+  chart.interaction('tooltip', { shared: true, groupName: false });
+});
 </script>

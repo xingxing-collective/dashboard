@@ -6,10 +6,10 @@
   </KeepAlive>
 </template>
 <script setup lang="ts">
-const { container } = useMap(MapType.MAPBOX)
+const { container } = useMap(MapType.MAPBOX);
 
 useSeoMeta({
   title: 'L7 | AntV | Dashboard',
-  description: 'L7 | AntV | Dashboard'
-})
+  description: 'L7 | AntV | Dashboard',
+});
 </script>
