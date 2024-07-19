@@ -6,7 +6,7 @@
   </KeepAlive>
 </template>
 <script setup lang="ts">
-const { container } = useMap(MapType.TENCENT);
+const { container } = useMap(MapType.TENCENT, {});
 
 useSeoMeta({
   title: 'L7 | AntV | Dashboard',
