@@ -193,4 +193,3 @@ watch(
 
 provideUseId(() => useId());
 </script>
-~/packages/dashboard/lib/slots
